@@ -1,0 +1,26 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: ship24-webhooks
+  provider: Ship24
+  api: Ship24 Tracking API
+  description: |
+    Receive Ship24 tracking events at a subscriber endpoint, and replay missed
+    events when an endpoint was unreachable.
+spec:
+  operations:
+    - id: receive-webhooks-tracking-results
+      method: POST
+      path: /your-endpoint
+      summary: Subscriber endpoint that receives signed tracking-result webhook payloads from Ship24.
+      direction: inbound-to-subscriber
+    - id: resend-webhooks
+      method: POST
+      path: /public/v1/trackers/{trackerId}/webhook-events/resend
+      summary: Resend the webhook events of an existing tracker.
+  governance:
+    auth: bearer_api_key
+    rate_limits:
+      resend-webhooks: 1/s
+    signing: configured per-webhook in dashboard
+    retry_policy: handled by Ship24 — see docs.ship24.com/webhooks

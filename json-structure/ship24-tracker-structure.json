@@ -1,0 +1,71 @@
+{
+  "title": "Ship24 Tracker JSON Structure",
+  "version": "1.0.0",
+  "provider": "Ship24",
+  "api": "Ship24 Tracking API",
+  "entities": {
+    "Tracker": {
+      "description": "A parcel being followed.",
+      "primaryKey": "trackerId",
+      "fields": [
+        { "name": "trackerId", "type": "string", "required": true },
+        { "name": "trackingNumber", "type": "string", "required": true },
+        { "name": "courierCode", "type": "array<string>" },
+        { "name": "clientTrackerId", "type": "string?" },
+        { "name": "shipmentReference", "type": "string?" },
+        { "name": "isSubscribed", "type": "boolean" },
+        { "name": "isTracked", "type": "boolean" },
+        { "name": "destinationCountryCode", "type": "string?" },
+        { "name": "createdAt", "type": "datetime" },
+        { "name": "updatedAt", "type": "datetime" }
+      ]
+    },
+    "Shipment": {
+      "description": "Aggregated current state of the parcel across all couriers.",
+      "primaryKey": "shipmentId",
+      "fields": [
+        { "name": "shipmentId", "type": "string", "required": true },
+        { "name": "trackerId", "type": "string", "required": true },
+        { "name": "statusCode", "type": "enum<pending,info_received,in_transit,out_for_delivery,failed_attempt,available_for_pickup,exception,delivered,expired,unknown>" },
+        { "name": "statusCategory", "type": "string" },
+        { "name": "statusMilestone", "type": "string" },
+        { "name": "originCountryCode", "type": "string?" },
+        { "name": "destinationCountryCode", "type": "string?" },
+        { "name": "estimatedDeliveryDate", "type": "datetime?" },
+        { "name": "service", "type": "string?" },
+        { "name": "signedBy", "type": "string?" }
+      ]
+    },
+    "Event": {
+      "description": "Single courier event on a tracker timeline.",
+      "primaryKey": "eventId",
+      "fields": [
+        { "name": "eventId", "type": "string", "required": true },
+        { "name": "trackerId", "type": "string", "required": true },
+        { "name": "trackingNumber", "type": "string" },
+        { "name": "courierCode", "type": "string" },
+        { "name": "status", "type": "string" },
+        { "name": "statusCode", "type": "string" },
+        { "name": "statusCategory", "type": "string" },
+        { "name": "statusMilestone", "type": "string" },
+        { "name": "occurrenceDatetime", "type": "datetime" },
+        { "name": "location", "type": "string?" }
+      ]
+    },
+    "Courier": {
+      "description": "One of the 1,500+ couriers supported by Ship24.",
+      "primaryKey": "courierCode",
+      "fields": [
+        { "name": "courierCode", "type": "string", "required": true },
+        { "name": "courierName", "type": "string" },
+        { "name": "courierCountryCode", "type": "string?" },
+        { "name": "courierUrl", "type": "string?" }
+      ]
+    }
+  },
+  "relationships": [
+    { "from": "Shipment.trackerId", "to": "Tracker.trackerId", "kind": "many-to-one" },
+    { "from": "Event.trackerId", "to": "Tracker.trackerId", "kind": "many-to-one" },
+    { "from": "Event.courierCode", "to": "Courier.courierCode", "kind": "many-to-one" }
+  ]
+}

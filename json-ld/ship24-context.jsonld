@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "ship24": "https://www.ship24.com/ns#",
+    "Tracker": "ship24:Tracker",
+    "Shipment": "schema:ParcelDelivery",
+    "Event": "ship24:Event",
+    "Courier": "schema:DeliveryService",
+    "trackerId": "ship24:trackerId",
+    "trackingNumber": "schema:trackingNumber",
+    "shipmentReference": "ship24:shipmentReference",
+    "clientTrackerId": "ship24:clientTrackerId",
+    "courierCode": "ship24:courierCode",
+    "courierName": "schema:name",
+    "isSubscribed": "ship24:isSubscribed",
+    "isTracked": "ship24:isTracked",
+    "destinationCountryCode": {
+      "@id": "ship24:destinationCountryCode",
+      "@type": "schema:Country"
+    },
+    "originCountryCode": {
+      "@id": "ship24:originCountryCode",
+      "@type": "schema:Country"
+    },
+    "statusCode": "ship24:statusCode",
+    "statusCategory": "ship24:statusCategory",
+    "statusMilestone": "ship24:statusMilestone",
+    "estimatedDeliveryDate": "schema:expectedArrivalUntil",
+    "deliveredDatetime": "schema:deliveryTime",
+    "occurrenceDatetime": "schema:dateTime",
+    "events": "schema:event",
+    "location": "schema:location",
+    "createdAt": "schema:dateCreated",
+    "updatedAt": "schema:dateModified"
+  }
+}

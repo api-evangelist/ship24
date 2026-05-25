@@ -1,0 +1,42 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: ship24-trackers
+  provider: Ship24
+  api: Ship24 Tracking API
+  description: |
+    Create, list, retrieve, update, and bulk-create Trackers — Ship24's
+    primary resource representing a parcel being followed across one or more
+    couriers.
+spec:
+  operations:
+    - id: create-tracker
+      method: POST
+      path: /public/v1/trackers
+      summary: Create a tracker for a single tracking number with optional courier hint.
+    - id: list-trackers
+      method: GET
+      path: /public/v1/trackers
+      summary: List existing trackers, paginated.
+    - id: bulk-create-trackers
+      method: POST
+      path: /public/v1/trackers/bulk
+      summary: Create up to N trackers in a single call.
+    - id: get-tracker-by-trackerId
+      method: GET
+      path: /public/v1/trackers/{trackerId}
+      summary: Retrieve a tracker by Ship24 tracker ID.
+    - id: update-tracker-by-trackerId
+      method: PATCH
+      path: /public/v1/trackers/{trackerId}
+      summary: Update tracker metadata (client tracker ID, destination country, etc.).
+  governance:
+    auth: bearer_api_key
+    rate_limits:
+      create-tracker: 10/s
+      list-trackers: 10/s
+      bulk-create-trackers: 3/s
+      get-tracker-by-trackerId: 10/s
+      update-tracker-by-trackerId: 10/s
+    billable: yes
+    billing_metric: shipment

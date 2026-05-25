@@ -1,0 +1,69 @@
+aid: ship24:vocabulary
+provider: Ship24
+api: Ship24 Tracking API
+version: "0.1"
+description: |
+  Domain vocabulary for the Ship24 universal package tracking API. Captures
+  the normalized status codes Ship24 emits across heterogeneous courier feeds,
+  the core entities, and the operational dimensions used in apis.yml and
+  capability definitions.
+
+operational:
+  - id: parcel
+    label: Parcel
+    description: A physical shipment being moved by one or more couriers.
+  - id: tracker
+    label: Tracker
+    description: Ship24-managed handle to a parcel; created with a tracking number.
+  - id: courier
+    label: Courier
+    description: A shipping carrier providing tracking events (USPS, DHL, FedEx, etc.).
+  - id: webhook
+    label: Webhook
+    description: Push notification of tracker events to a subscriber endpoint.
+  - id: status-code
+    label: Normalized Status Code
+    description: |
+      Ship24 maps thousands of carrier-specific status strings into a small
+      enum of normalized codes for cross-carrier reporting.
+
+status_codes:
+  - code: pending
+    description: Ship24 is waiting for first courier signal.
+  - code: info_received
+    description: Courier has acknowledged the shipment but hasn't moved it.
+  - code: in_transit
+    description: Parcel is moving through the courier network.
+  - code: out_for_delivery
+    description: Final-mile courier is delivering today.
+  - code: failed_attempt
+    description: Delivery was attempted and failed.
+  - code: available_for_pickup
+    description: Parcel is waiting at a pickup point or locker.
+  - code: exception
+    description: Damage, lost, return-to-sender, or other anomalous state.
+  - code: delivered
+    description: Final delivery confirmed.
+  - code: expired
+    description: Tracker has aged out with no recent events.
+  - code: unknown
+    description: Status could not be normalized.
+
+capabilities:
+  - id: ship24-trackers
+  - id: ship24-tracking-results
+  - id: ship24-couriers
+  - id: ship24-webhooks
+  - id: parcel-tracking
+
+dimensions:
+  domain: Logistics
+  subDomain: ShipmentTracking
+  position: Consumer
+  pattern: Aggregator
+  delivery:
+    - rest
+    - webhooks
+  billingModels:
+    - per_shipment
+    - per_call

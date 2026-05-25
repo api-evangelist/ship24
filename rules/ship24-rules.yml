@@ -1,0 +1,76 @@
+extends: spectral:oas
+rules:
+  ship24-info-title:
+    description: Info.title MUST mention Ship24.
+    severity: error
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "Ship24"
+
+  ship24-info-description-required:
+    description: Info.description MUST be non-empty for a tracking API.
+    severity: error
+    given: "$.info.description"
+    then:
+      function: truthy
+
+  ship24-server-base-url:
+    description: At least one server URL MUST point to api.ship24.com.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.ship24\\.com"
+
+  ship24-bearer-security:
+    description: Bearer token security scheme MUST be declared.
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  ship24-operation-summary-title-case:
+    description: Operation summaries SHOULD use Title Case.
+    severity: warn
+    given: "$.paths.*[get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  ship24-operation-tags-required:
+    description: Every operation MUST declare at least one tag.
+    severity: error
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  ship24-operation-id-required:
+    description: Every operation MUST declare an operationId.
+    severity: error
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  ship24-tracker-path-shape:
+    description: Tracker paths SHOULD live under /public/v1/trackers.
+    severity: warn
+    given: "$.paths[?(@property.match(/tracker/i))]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/public/v1/trackers"
+
+  ship24-rate-limit-documentation:
+    description: Description SHOULD mention rate limits or link to docs.ship24.com/rate-limiter.
+    severity: info
+    given: "$.info.description"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(rate|limit|throttl)"

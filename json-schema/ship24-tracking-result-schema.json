@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ship24/main/json-schema/ship24-tracking-result-schema.json",
+  "title": "Ship24 Tracking Result",
+  "description": "Normalized tracking timeline returned by Ship24 for a tracker.",
+  "type": "object",
+  "properties": {
+    "tracker": {
+      "$ref": "ship24-tracker-schema.json"
+    },
+    "shipment": {
+      "type": "object",
+      "properties": {
+        "shipmentId": { "type": "string" },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "info_received",
+            "in_transit",
+            "out_for_delivery",
+            "failed_attempt",
+            "available_for_pickup",
+            "exception",
+            "delivered",
+            "expired",
+            "unknown"
+          ]
+        },
+        "statusCategory": { "type": "string" },
+        "statusMilestone": { "type": "string" },
+        "originCountryCode": { "type": ["string", "null"] },
+        "destinationCountryCode": { "type": ["string", "null"] },
+        "delivery": {
+          "type": "object",
+          "properties": {
+            "estimatedDeliveryDate": { "type": ["string", "null"], "format": "date-time" },
+            "service": { "type": ["string", "null"] },
+            "signedBy": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Normalized timeline of events from one or more couriers.",
+      "items": {
+        "type": "object",
+        "required": ["occurrenceDatetime", "status"],
+        "properties": {
+          "eventId": { "type": "string" },
+          "trackerId": { "type": "string" },
+          "trackingNumber": { "type": "string" },
+          "courierCode": { "type": "string" },
+          "status": { "type": "string" },
+          "statusCode": { "type": "string" },
+          "statusCategory": { "type": "string" },
+          "statusMilestone": { "type": "string" },
+          "occurrenceDatetime": { "type": "string", "format": "date-time" },
+          "datetime": { "type": "string", "format": "date-time" },
+          "location": { "type": ["string", "null"] },
+          "sourceCode": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "timestamps": {
+          "type": "object",
+          "properties": {
+            "infoReceivedDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "inTransitDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "outForDeliveryDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "failedAttemptDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "availableForPickupDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "exceptionDatetime": { "type": ["string", "null"], "format": "date-time" },
+            "deliveredDatetime": { "type": ["string", "null"], "format": "date-time" }
+          }
+        }
+      }
+    }
+  }
+}

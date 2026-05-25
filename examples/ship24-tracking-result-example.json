@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.ship24.com/public/v1/trackers/tracker_01HZ9XYABCDEFG/results",
+    "headers": {
+      "Authorization": "Bearer YOUR_SHIP24_API_KEY"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "trackings": [
+          {
+            "tracker": {
+              "trackerId": "tracker_01HZ9XYABCDEFG",
+              "trackingNumber": "1Z999AA10123456784",
+              "shipmentReference": "ORDER-10042",
+              "isSubscribed": true,
+              "isTracked": true
+            },
+            "shipment": {
+              "shipmentId": "shipment_01HZ9XYHIJKLMN",
+              "statusCode": "in_transit",
+              "statusCategory": "in_transit",
+              "statusMilestone": "in_transit",
+              "originCountryCode": "CN",
+              "destinationCountryCode": "US",
+              "delivery": {
+                "estimatedDeliveryDate": "2026-05-29T00:00:00Z",
+                "service": "Ground",
+                "signedBy": null
+              }
+            },
+            "events": [
+              {
+                "eventId": "evt_01",
+                "trackerId": "tracker_01HZ9XYABCDEFG",
+                "trackingNumber": "1Z999AA10123456784",
+                "courierCode": "ups",
+                "status": "Order processed: Ready for UPS",
+                "statusCode": "info_received",
+                "statusCategory": "info_received",
+                "statusMilestone": "info_received",
+                "occurrenceDatetime": "2026-05-24T18:11:00Z",
+                "location": "Shenzhen, CN"
+              },
+              {
+                "eventId": "evt_02",
+                "trackerId": "tracker_01HZ9XYABCDEFG",
+                "trackingNumber": "1Z999AA10123456784",
+                "courierCode": "ups",
+                "status": "Departed from facility",
+                "statusCode": "in_transit",
+                "statusCategory": "in_transit",
+                "statusMilestone": "in_transit",
+                "occurrenceDatetime": "2026-05-25T02:47:00Z",
+                "location": "Anchorage, AK, US"
+              }
+            ],
+            "statistics": {
+              "timestamps": {
+                "infoReceivedDatetime": "2026-05-24T18:11:00Z",
+                "inTransitDatetime": "2026-05-25T02:47:00Z",
+                "outForDeliveryDatetime": null,
+                "deliveredDatetime": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

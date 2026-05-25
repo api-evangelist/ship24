@@ -1,0 +1,99 @@
+aid: ship24:plans
+specVersion: "0.1"
+provider: Ship24
+product: Ship24 Tracking & Post-Purchase Platform
+homepage: https://www.ship24.com/pricing
+currency: USD
+billing:
+  cycle: monthly
+  trial:
+    duration: P14D
+    appliesTo: [essential, pro]
+metric:
+  unit: shipment
+  description: |
+    A "shipment" is one Tracker created in Ship24. Plans are sized by the number of
+    shipments that may be created per billing cycle. Ship24 also offers a separate
+    per-API-call plan, documented under Ship24's "per-call plan" docs, for callers
+    that prefer to be billed per request rather than per tracker.
+plans:
+  - id: free
+    name: Free
+    price:
+      amount: 0
+      cycle: monthly
+    quotas:
+      shipments_per_month: 10
+    overage:
+      policy: block
+      description: Additional shipments beyond the monthly quota are not accepted on the Free plan.
+    features:
+      - 1500_plus_couriers
+      - dashboard_access
+      - branded_tracking_page
+      - email_delivery_notifications
+  - id: essential
+    name: Essential
+    price:
+      starts_at: 3.90
+      cycle: monthly
+      tiered:
+        - shipments: 50
+          monthly: 3.90
+          per_shipment: 0.078
+        - shipments: 5000
+          monthly: 199
+          per_shipment: 0.0398
+    overage:
+      policy: usage
+      per_shipment: 0.05
+    features:
+      - ai_courier_auto_detection
+      - customizable_branding
+      - improved_dashboard
+      - email_and_sms_notifications
+      - dedicated_support_options
+  - id: pro
+    name: Pro
+    price:
+      starts_at: 59
+      cycle: monthly
+      tiered:
+        - shipments: 1000
+          monthly: 59
+          per_shipment: 0.059
+        - shipments: 250000
+          monthly: 4799
+    overage:
+      policy: usage
+      per_shipment: 0.05
+    features:
+      - tracking_api
+      - webhooks
+      - bulk_data_export
+      - dedicated_support
+      - custom_email_domain
+      - remove_ship24_branding
+      - branded_tracking_page_custom_domain
+  - id: enterprise
+    name: Enterprise
+    price:
+      model: custom
+      contactSales: https://www.ship24.com/contact-us
+    quotas:
+      shipments_per_month: ">=250000"
+    features:
+      - tailored_pricing
+      - dedicated_account_manager
+      - custom_refresh_rates
+      - on_demand_courier_integrations
+      - sla
+addOns:
+  - id: per-call-plan
+    name: Per-call plan
+    description: Alternative billing model that meters individual API calls rather than per-tracker.
+    docs: https://docs.ship24.com/
+sources:
+  - https://www.ship24.com/pricing
+  - https://docs.ship24.com/
+  updated: '2026-05-25'

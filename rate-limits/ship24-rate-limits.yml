@@ -1,0 +1,73 @@
+aid: ship24:rate-limits
+specVersion: "0.1"
+provider: Ship24
+api: Ship24 Tracking API
+baseURL: https://api.ship24.com
+window: per-second
+enforcement:
+  scope: per_api_key
+  response_status: 429
+  response_headers:
+    - name: RateLimit-Limit
+      description: Total requests allowed per 1-second window (IETF draft header).
+    - name: RateLimit-Remaining
+      description: Requests remaining in the current 1-second window.
+    - name: RateLimit-Reset
+      description: Delay in seconds until the rate limit window resets.
+    - name: X-RateLimit-Limit
+      description: Alternative non-standard form of the limit header.
+    - name: X-RateLimit-Remaining
+      description: Alternative non-standard form of the remaining counter.
+    - name: X-RateLimit-Reset
+      description: Unix timestamp at which the limit resets.
+    - name: Retry-After
+      description: Delay in seconds before retry is permitted after a 429.
+limits:
+  - endpoint: POST /public/v1/trackers
+    operationId: create-tracker
+    limit_per_second: 10
+  - endpoint: GET /public/v1/trackers
+    operationId: list-trackers
+    limit_per_second: 10
+  - endpoint: POST /public/v1/trackers/bulk
+    operationId: bulk-create-trackers
+    limit_per_second: 3
+  - endpoint: POST /public/v1/trackers/track
+    operationId: create-tracker-and-get-tracking-results
+    limit_per_second: 10
+  - endpoint: GET /public/v1/trackers/{trackerId}
+    operationId: get-tracker-by-trackerId
+    limit_per_second: 10
+  - endpoint: PATCH /public/v1/trackers/{trackerId}
+    operationId: update-tracker-by-trackerId
+    limit_per_second: 10
+  - endpoint: GET /public/v1/trackers/search/{trackingNumber}/results
+    operationId: get-tracking-results-of-trackers-by-tracking-number
+    limit_per_second: 10
+  - endpoint: GET /public/v1/trackers/{trackerId}/results
+    operationId: get-tracking-results-of-tracker-by-trackerId
+    limit_per_second: 10
+  - endpoint: POST /public/v1/trackers/{trackerId}/webhook-events/resend
+    operationId: resend-webhooks
+    limit_per_second: 1
+  - endpoint: POST /public/v1/tracking/search
+    operationId: get-tracking
+    limit_per_second: 10
+  - endpoint: GET /public/v1/couriers
+    operationId: get-couriers
+    limit_per_second: 1
+plan_quotas:
+  notes: |
+    The per-second rate limits above are enforced uniformly across plans. Monthly
+    shipment volume (the billable unit) is governed by plan tier — Free 10/mo,
+    Essential 50–5,000/mo, Pro 1,000–250,000/mo, Enterprise custom — and overage
+    on paid plans bills at $0.05 per additional shipment. See plans/ship24-plans-pricing.yml.
+backoff:
+  recommended: exponential
+  start_ms: 1000
+  factor: 2
+  max_attempts: 5
+  honor_retry_after: true
+sources:
+  - https://docs.ship24.com/rate-limiter
+  updated: '2026-05-25'

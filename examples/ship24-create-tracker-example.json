@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.ship24.com/public/v1/trackers",
+    "headers": {
+      "Authorization": "Bearer YOUR_SHIP24_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "trackingNumber": "1Z999AA10123456784",
+      "courierCode": ["ups"],
+      "shipmentReference": "ORDER-10042",
+      "destinationCountryCode": "US"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "data": {
+        "tracker": {
+          "trackerId": "tracker_01HZ9XYABCDEFG",
+          "trackingNumber": "1Z999AA10123456784",
+          "shipmentReference": "ORDER-10042",
+          "courierCode": ["ups"],
+          "clientTrackerId": null,
+          "isSubscribed": true,
+          "isTracked": true,
+          "destinationCountryCode": "US",
+          "createdAt": "2026-05-25T14:02:11Z",
+          "updatedAt": "2026-05-25T14:02:11Z"
+        }
+      }
+    }
+  }
+}

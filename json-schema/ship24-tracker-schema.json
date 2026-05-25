@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ship24/main/json-schema/ship24-tracker-schema.json",
+  "title": "Ship24 Tracker",
+  "description": "A Ship24 Tracker represents one parcel being followed across one or more couriers.",
+  "type": "object",
+  "required": ["trackerId", "trackingNumber"],
+  "properties": {
+    "trackerId": {
+      "type": "string",
+      "description": "Ship24-assigned tracker identifier."
+    },
+    "trackingNumber": {
+      "type": "string",
+      "description": "Carrier tracking number as supplied to Ship24."
+    },
+    "shipmentReference": {
+      "type": ["string", "null"],
+      "description": "Client-supplied reference (order ID, line item, etc.)."
+    },
+    "courierCode": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ship24 courier codes attached to this tracker (one tracker may resolve to multiple couriers)."
+    },
+    "clientTrackerId": {
+      "type": ["string", "null"],
+      "description": "Caller-managed identifier for cross-system reconciliation."
+    },
+    "isSubscribed": {
+      "type": "boolean",
+      "description": "Whether the tracker is currently subscribed for active polling."
+    },
+    "isTracked": {
+      "type": "boolean",
+      "description": "Whether Ship24 is actively fetching updates for this tracker."
+    },
+    "destinationCountryCode": {
+      "type": ["string", "null"],
+      "description": "ISO 3166-1 alpha-2 destination country, used to disambiguate cross-border couriers."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

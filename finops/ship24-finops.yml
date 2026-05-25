@@ -1,0 +1,74 @@
+aid: ship24:finops
+specVersion: "0.1"
+provider: Ship24
+framework: FinOps Foundation / FOCUS-aligned
+service:
+  serviceCategory: Logistics
+  subCategory: ShipmentTracking
+  providerName: Ship24
+  publisherName: Ship24
+  invoiceIssuer: Ship24
+  serviceName: Ship24 Tracking & Post-Purchase Platform
+billing:
+  currency: USD
+  cycle: monthly
+  invoicing: dashboard + email
+  paymentMethods:
+    - credit_card
+    - invoice_enterprise
+chargeCategories:
+  - id: subscription
+    name: Plan Subscription
+    description: Monthly recurring fee for the selected plan tier (Essential, Pro, Enterprise).
+    pricingCategory: Committed
+    pricingUnit: month
+  - id: shipment-usage
+    name: Shipment Usage Overage
+    description: Per-shipment overage charged when monthly plan quota is exceeded on paid plans.
+    pricingCategory: Usage
+    pricingUnit: shipment
+    listUnitPrice: 0.05
+  - id: per-call
+    name: Per-Call Plan
+    description: Optional alternative billing model that meters individual API calls instead of trackers.
+    pricingCategory: Usage
+    pricingUnit: api_call
+costAllocation:
+  recommendedTags:
+    - tenant_id
+    - environment
+    - storefront
+    - courier
+    - region
+  splittingMethods:
+    - allocate_by_storefront
+    - allocate_by_courier
+    - allocate_by_business_unit
+metrics:
+  - id: shipments_created
+    description: Count of Trackers created (the billable unit on per-shipment plans).
+    source: dashboard + API metadata
+  - id: api_calls
+    description: Count of API calls (the billable unit on the per-call plan).
+    source: dashboard
+  - id: webhook_deliveries
+    description: Count of webhook events delivered to subscriber endpoints.
+    source: dashboard
+budgetGuardrails:
+  - id: free-plan-block
+    description: Free plan hard-blocks shipments above 10/month — no overage exposure.
+  - id: paid-plan-overage
+    description: Paid plans (Essential, Pro) bill $0.05/shipment over plan quota — set alerts on shipments_created.
+  - id: enterprise-commit
+    description: Enterprise plans are committed-use; negotiate annual commit and refresh-rate SLAs at contract time.
+optimizationLevers:
+  - right_size_plan_tier
+  - prefer_bulk_tracker_creation
+  - cap_webhook_replays
+  - filter_low-value_trackers_pre-creation
+  - reuse_couriers_catalog_calls
+sources:
+  - https://www.ship24.com/pricing
+  - https://docs.ship24.com/rate-limiter
+  - https://docs.ship24.com/
+  updated: '2026-05-25'
