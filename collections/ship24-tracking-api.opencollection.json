@@ -1,0 +1,345 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ship24 Tracking API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "📦 Trackers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List existing Trackers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/trackers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page index, starting from 1."
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "The maximum number of trackers returned per page."
+              },
+              {
+                "name": "sort",
+                "value": "1",
+                "type": "query",
+                "description": "Defines the sorting order of trackers. Use `1` for ascending (`createdAt` oldest first) and `-1` for descending (`createdAt` newest first). The default is ascending (`1`) to ensure stable pagination."
+              }
+            ]
+          },
+          "docs": "This endpoint return a list of all existing `Trackers`, using page-based pagination."
+        },
+        {
+          "info": {
+            "name": "Create a tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/trackers",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new `Tracker`, based on the specified information. Once a `Tracker` is created, you will be able to receive webhook notifications and/or fetch its tracking result.\n\n> This endpoint is idempotent, any subsequent calls with the same parameters won't duplicate `Tracker`. However, providing different information in any of the fields will create a new `Tracker`, as it will be considered as a new shipment."
+        },
+        {
+          "info": {
+            "name": "Bulk create trackers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/trackers/bulk",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create up to 100 new `Trackers` in a single operation, based on the specified information. Once the `Trackers` are created, you will be able to receive webhook notifications and/or fetch their tracking results.\n\n> While tracker creation is idempotent, this endpoint itself is not. Any duplicate within the request or any tracker parameters matching an existing tracker will not create a duplicate `Tracker`. However, providing different information in any of the fields wi"
+        },
+        {
+          "info": {
+            "name": "Create a tracker and get tracking results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/trackers/track",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new `Tracker` on the specified tracking number , if it does not exist, and returns the tracking results directly. We advise using this endpoint if you are not interested in receiving webhook notifications and just want to fetch tracking results. This way, you can always call this unified endpoint to get tracking results, without worrying about `Tracker` creation and management.\n\n\n> 🛑 During the very first call for a tracking number, this endpoint will create a `Tracker` "
+        },
+        {
+          "info": {
+            "name": "Get an existing tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/trackers/:trackerId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "trackerId",
+                "value": "26148317-7502-d3ac-44a9-546d240ac0dd",
+                "type": "path",
+                "description": "**Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+              },
+              {
+                "name": "searchBy",
+                "value": "trackerId",
+                "type": "query",
+                "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+              }
+            ]
+          },
+          "docs": "This endpoint return an existing `Tracker` for a given `trackerId`."
+        },
+        {
+          "info": {
+            "name": "Update an existing tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.ship24.com/public/v1/trackers/:trackerId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "trackerId",
+                "value": "26148317-7502-d3ac-44a9-546d240ac0dd",
+                "type": "path",
+                "description": "**Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+              },
+              {
+                "name": "searchBy",
+                "value": "trackerId",
+                "type": "query",
+                "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows to modify an existing `Tracker` matching with the given `trackerId`.  \n\n> Once the Tracker has gathered shipment tracking information, certain fields related to the shipment data cannot be modified. These include: \n> - `courierCode` \n> - `originCountryCode` \n> - `destinationCountryCode` \n> - `shippingDate`"
+        },
+        {
+          "info": {
+            "name": "Get tracking results for existing trackers by tracking number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/trackers/search/:trackingNumber/results",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "trackingNumber",
+                "value": "9400115901047177598206",
+                "type": "path",
+                "description": "**Required** Tracking number of the parcel."
+              }
+            ]
+          },
+          "docs": "This endpoint will return the `tracking` result corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section. \n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`."
+        },
+        {
+          "info": {
+            "name": "Get tracking results for an existing tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/trackers/:trackerId/results",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "trackerId",
+                "value": "26148317-7502-d3ac-44a9-546d240ac0dd",
+                "type": "path",
+                "description": "**Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+              },
+              {
+                "name": "searchBy",
+                "value": "trackerId",
+                "type": "query",
+                "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+              }
+            ]
+          },
+          "docs": "This endpoint return the `Tracking` results of an existing `Tracker` matching with the given trackerId. As trackerId are unique, the `Trackings` array will always have only one item. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with di"
+        },
+        {
+          "info": {
+            "name": "Resend webhooks of an existing tracker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/trackers/:trackerId/webhook-events/resend",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "params": [
+              {
+                "name": "trackerId",
+                "value": "26148317-7502-d3ac-44a9-546d240ac0dd",
+                "type": "path",
+                "description": "**Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+              },
+              {
+                "name": "searchBy",
+                "value": "trackerId",
+                "type": "query",
+                "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+              }
+            ]
+          },
+          "docs": "This endpoint allows to resend all webhook messages of an existing tracker. \n\nThis can be useful in case you missed some webhook messages or if you need to reprocess them for any reason."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "🚚 Couriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all couriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/couriers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ]
+          },
+          "docs": "This endpoint will return the list of all couriers supported by Ship24, identified by their `courierCode`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "➕ API for per-call plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tracking results by tracking number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/tracking/search",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint will return the `tracking` corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nFor better accuracy, we strongly advise to provide extra information such as the origin country, destination postcode & country, and the shipping date.\n\n> 🛑 You need an active \"Per-call\" subscription to use this endpoint. Our standard \"Per-shipment\" product & plans remain the best choice as it offers more feature"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,168 +1,163 @@
 aid: ship24
 url: https://raw.githubusercontent.com/api-evangelist/ship24/refs/heads/main/apis.yml
 apis:
-- aid: ship24:ship24-tracking-api
-  name: Ship24 Tracking API
-  tags:
+  - aid: ship24:ship24-tracking-api
+    name: Ship24 Tracking API
+    tags:
+      - Tracking
+      - Logistics
+      - Shipping
+      - Parcels
+      - Couriers
+      - Webhooks
+      - Ecommerce
+    humanURL: https://docs.ship24.com/
+    baseURL: https://api.ship24.com
+    properties:
+      - url: https://docs.ship24.com/
+        type: Documentation
+      - url: https://docs.ship24.com/tracking-api-reference/
+        type: APIReference
+      - url: https://docs.ship24.com/getting-started
+        type: GettingStarted
+      - url: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
+        type: OpenAPI
+      - url: openapi/ship24-tracking-api-openapi.yml
+        type: OpenAPI
+      - url: https://docs.ship24.com/webhooks
+        type: Webhooks
+      - url: https://docs.ship24.com/rate-limiter
+        type: RateLimits
+      - url: https://github.com/Ship24/n8n-nodes-ship24
+        type: Integration
+      - url: rules/ship24-rules.yml
+        type: SpectralRules
+      - url: json-schema/ship24-tracker-schema.json
+        type: JSONSchema
+      - url: json-schema/ship24-tracking-result-schema.json
+        type: JSONSchema
+      - url: json-structure/ship24-tracker-structure.json
+        type: JSONStructure
+      - url: json-ld/ship24-context.jsonld
+        type: JSONLD
+      - url: vocabulary/ship24-vocabulary.yml
+        type: Vocabulary
+      - url: examples/ship24-create-tracker-example.json
+        type: Example
+      - url: examples/ship24-tracking-result-example.json
+        type: Example
+      - url: plans/ship24-plans-pricing.yml
+        type: Plans
+      - url: rate-limits/ship24-rate-limits.yml
+        type: RateLimitsArtifact
+      - url: finops/ship24-finops.yml
+        type: FinOps
+    description: >-
+      The Ship24 Tracking API is a universal package tracking aggregator that abstracts 1,500+ couriers worldwide behind
+      a single REST endpoint. Developers create a Tracker by submitting a tracking number (with optional courier hint)
+      and receive a normalized timeline of shipment events — accepted, in transit, out for delivery, delivered,
+      exception, pending, etc. — pushed via webhooks or pulled by tracker ID. The API exposes courier auto-detection,
+      bulk tracker creation, a courier catalog endpoint, and webhook resend tooling for replay. It powers branded
+      tracking pages, dashboards, and post-purchase customer experiences across ecommerce, 3PL, and marketplace
+      workloads.
+name: Ship24
+tags:
   - Tracking
   - Logistics
   - Shipping
-  - Parcels
   - Couriers
+  - Parcels
   - Webhooks
   - Ecommerce
-  humanURL: https://docs.ship24.com/
-  baseURL: https://api.ship24.com
-  properties:
-  - url: https://docs.ship24.com/
-    type: Documentation
-  - url: https://docs.ship24.com/tracking-api-reference/
-    type: APIReference
-  - url: https://docs.ship24.com/getting-started
-    type: GettingStarted
-  - url: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
-    type: OpenAPI
-  - url: openapi/ship24-tracking-api-openapi.yml
-    type: OpenAPI
-  - url: https://docs.ship24.com/webhooks
-    type: Webhooks
-  - url: https://docs.ship24.com/rate-limiter
-    type: RateLimits
-  - url: https://github.com/Ship24/n8n-nodes-ship24
-    type: Integration
-  - url: rules/ship24-rules.yml
-    type: SpectralRules
-  - url: json-schema/ship24-tracker-schema.json
-    type: JSONSchema
-  - url: json-schema/ship24-tracking-result-schema.json
-    type: JSONSchema
-  - url: json-structure/ship24-tracker-structure.json
-    type: JSONStructure
-  - url: json-ld/ship24-context.jsonld
-    type: JSONLD
-  - url: vocabulary/ship24-vocabulary.yml
-    type: Vocabulary
-  - url: examples/ship24-create-tracker-example.json
-    type: Example
-  - url: examples/ship24-tracking-result-example.json
-    type: Example
-  - url: capabilities/parcel-tracking.yaml
-    type: NaftikoCapabilities
-  - type: NaftikoCapability
-    url: capabilities/ship24-trackers.yaml
-  - type: NaftikoCapability
-    url: capabilities/ship24-tracking-results.yaml
-  - type: NaftikoCapability
-    url: capabilities/ship24-couriers.yaml
-  - type: NaftikoCapability
-    url: capabilities/ship24-webhooks.yaml
-  - url: plans/ship24-plans-pricing.yml
-    type: Plans
-  - url: rate-limits/ship24-rate-limits.yml
-    type: RateLimitsArtifact
-  - url: finops/ship24-finops.yml
-    type: FinOps
-  description: The Ship24 Tracking API is a universal package tracking aggregator that abstracts 1,500+ couriers worldwide
-    behind a single REST endpoint. Developers create a Tracker by submitting a tracking number (with optional courier hint)
-    and receive a normalized timeline of shipment events — accepted, in transit, out for delivery, delivered, exception,
-    pending, etc. — pushed via webhooks or pulled by tracker ID. The API exposes courier auto-detection, bulk tracker creation,
-    a courier catalog endpoint, and webhook resend tooling for replay. It powers branded tracking pages, dashboards, and
-    post-purchase customer experiences across ecommerce, 3PL, and marketplace workloads.
-name: Ship24
-tags:
-- Tracking
-- Logistics
-- Shipping
-- Couriers
-- Parcels
-- Webhooks
-- Ecommerce
-- PostPurchase
+  - PostPurchase
 kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2026-05-25'
 modified: '2026-05-25'
 position: Consumer
-description: Ship24 is a universal shipment tracking platform that consolidates 1,500+ couriers and marketplaces into a
-  single API, dashboard, and post-purchase customer experience. It is operated as an enterprise tracking aggregator with
-  reported coverage of over a billion shipments tracked, a Shopify app, branded tracking pages, email and SMS delivery
+description: >-
+  Ship24 is a universal shipment tracking platform that consolidates 1,500+ couriers and marketplaces into a single API,
+  dashboard, and post-purchase customer experience. It is operated as an enterprise tracking aggregator with reported
+  coverage of over a billion shipments tracked, a Shopify app, branded tracking pages, email and SMS delivery
   notifications, a tracking widget, and an IOSS fiscal intermediary service for EU VAT compliance on inbound parcels.
   The developer surface is a single REST tracking API delivering normalized status codes and webhook events designed to
   reduce WISMO ("where is my order?") support load for ecommerce, 3PL, and marketplace operators.
 integrations:
-- name: Shopify
-- name: n8n
-- name: Postman
-- name: Insomnia
-- name: Zapier
+  - name: Shopify
+  - name: n8n
+  - name: Postman
+  - name: Insomnia
+  - name: Zapier
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 specificationVersion: '0.20'
 common:
-- type: Website
-  url: https://www.ship24.com
-- type: Documentation
-  url: https://docs.ship24.com/
-- type: APIReference
-  url: https://docs.ship24.com/tracking-api-reference/
-- type: GettingStarted
-  url: https://docs.ship24.com/getting-started
-- type: Webhooks
-  url: https://docs.ship24.com/webhooks
-- type: RateLimits
-  url: https://docs.ship24.com/rate-limiter
-- type: Pricing
-  url: https://www.ship24.com/pricing
-- type: SignUp
-  url: https://dashboard.ship24.com/register
-- type: Login
-  url: https://dashboard.ship24.com/
-- type: Authentication
-  url: https://dashboard.ship24.com/integrations/api-keys
-- type: Status
-  url: https://status.ship24.com
-- type: Blog
-  url: https://www.ship24.com/blog
-- type: ContactUs
-  url: https://www.ship24.com/contact-us
-- type: TermsOfService
-  url: https://www.ship24.com/terms-and-conditions
-- type: PrivacyPolicy
-  url: https://www.ship24.com/privacy-policy
-- type: LinkedIn
-  url: https://www.linkedin.com/company/ship24/
-- type: GitHubOrganization
-  url: https://github.com/Ship24
-- type: ShopifyApp
-  url: https://apps.shopify.com/ship24
-- type: Features
-  data:
-  - 1,500+ couriers worldwide (USPS, UPS, FedEx, DHL, Royal Mail, La Poste, China Post, Japan Post, India Post, Correios, Yodel, Hermes, GLS, Canada Post, Australia Post, etc.)
-  - Universal tracking REST API at api.ship24.com over HTTPS
-  - Bearer token (API key) authentication issued from the Ship24 dashboard
-  - Automatic courier auto-detection from tracking number patterns
-  - Bulk tracker creation in a single request
-  - Normalized shipment status codes across heterogeneous courier feeds
-  - Webhook delivery of tracking events with signed payloads
-  - Webhook resend / replay endpoint for missed events
-  - Branded customer tracking pages on custom domain (Pro plan and above)
-  - Email and SMS delivery notifications
-  - Tracking widget embeddable in storefronts
-  - Shopify app integration with automated post-purchase workflows
-  - Per-shipment and per-API-call commercial plans
-  - 99.9% uptime SLA target
-  - GDPR-compliant data processing
-  - IOSS fiscal intermediary service for EU VAT compliance on cross-border ecommerce parcels
-  sources:
-  - https://www.ship24.com/
-  - https://docs.ship24.com/
-  - https://www.ship24.com/pricing
-  - https://docs.ship24.com/rate-limiter
-  updated: '2026-05-25'
-- type: Integrations
-  url: https://www.ship24.com/integrations
-- type: AgentSkill
-  name: n8n nodes
-  url: https://github.com/Ship24/n8n-nodes-ship24
+  - type: Website
+    url: https://www.ship24.com
+  - type: Documentation
+    url: https://docs.ship24.com/
+  - type: APIReference
+    url: https://docs.ship24.com/tracking-api-reference/
+  - type: GettingStarted
+    url: https://docs.ship24.com/getting-started
+  - type: Webhooks
+    url: https://docs.ship24.com/webhooks
+  - type: RateLimits
+    url: https://docs.ship24.com/rate-limiter
+  - type: Pricing
+    url: https://www.ship24.com/pricing
+  - type: SignUp
+    url: https://dashboard.ship24.com/register
+  - type: Login
+    url: https://dashboard.ship24.com/
+  - type: Authentication
+    url: https://dashboard.ship24.com/integrations/api-keys
+  - type: Status
+    url: https://status.ship24.com
+  - type: Blog
+    url: https://www.ship24.com/blog
+  - type: ContactUs
+    url: https://www.ship24.com/contact-us
+  - type: TermsOfService
+    url: https://www.ship24.com/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://www.ship24.com/privacy-policy
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/ship24/
+  - type: GitHubOrganization
+    url: https://github.com/Ship24
+  - type: ShopifyApp
+    url: https://apps.shopify.com/ship24
+  - type: Features
+    data:
+      - >-
+        1,500+ couriers worldwide (USPS, UPS, FedEx, DHL, Royal Mail, La Poste, China Post, Japan Post, India Post,
+        Correios, Yodel, Hermes, GLS, Canada Post, Australia Post, etc.)
+      - Universal tracking REST API at api.ship24.com over HTTPS
+      - Bearer token (API key) authentication issued from the Ship24 dashboard
+      - Automatic courier auto-detection from tracking number patterns
+      - Bulk tracker creation in a single request
+      - Normalized shipment status codes across heterogeneous courier feeds
+      - Webhook delivery of tracking events with signed payloads
+      - Webhook resend / replay endpoint for missed events
+      - Branded customer tracking pages on custom domain (Pro plan and above)
+      - Email and SMS delivery notifications
+      - Tracking widget embeddable in storefronts
+      - Shopify app integration with automated post-purchase workflows
+      - Per-shipment and per-API-call commercial plans
+      - 99.9% uptime SLA target
+      - GDPR-compliant data processing
+      - IOSS fiscal intermediary service for EU VAT compliance on cross-border ecommerce parcels
+    sources:
+      - https://www.ship24.com/
+      - https://docs.ship24.com/
+      - https://www.ship24.com/pricing
+      - https://docs.ship24.com/rate-limiter
+    updated: '2026-05-25'
+  - type: Integrations
+    url: https://www.ship24.com/integrations
+  - type: AgentSkill
+    name: n8n nodes
+    url: https://github.com/Ship24/n8n-nodes-ship24
