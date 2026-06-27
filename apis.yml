@@ -29,7 +29,7 @@ apis:
       - url: https://docs.ship24.com/rate-limiter
         type: RateLimits
       - url: https://github.com/Ship24/n8n-nodes-ship24
-        type: Integration
+        type: Integrations
       - url: rules/ship24-rules.yml
         type: SpectralRules
       - url: json-schema/ship24-tracker-schema.json
@@ -43,9 +43,9 @@ apis:
       - url: vocabulary/ship24-vocabulary.yml
         type: Vocabulary
       - url: examples/ship24-create-tracker-example.json
-        type: Example
+        type: Examples
       - url: examples/ship24-tracking-result-example.json
-        type: Example
+        type: Examples
       - url: plans/ship24-plans-pricing.yml
         type: Plans
       - url: rate-limits/ship24-rate-limits.yml
@@ -108,7 +108,7 @@ common:
     url: https://docs.ship24.com/rate-limiter
   - type: Pricing
     url: https://www.ship24.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://dashboard.ship24.com/register
   - type: Login
     url: https://dashboard.ship24.com/
@@ -158,6 +158,6 @@ common:
     updated: '2026-05-25'
   - type: Integrations
     url: https://www.ship24.com/integrations
-  - type: AgentSkill
+  - type: AgentSkills
     name: n8n nodes
     url: https://github.com/Ship24/n8n-nodes-ship24
