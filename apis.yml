@@ -94,6 +94,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.20'
 common:
+  - type: DomainSecurity
+    url: security/ship24-domain-security.yml
+  - type: Authentication
+    url: authentication/ship24-authentication.yml
   - type: Website
     url: https://www.ship24.com
   - type: Documentation
