@@ -94,6 +94,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.20'
 common:
+  - type: AgenticAccess
+    url: agentic-access/ship24-agentic-access.yml
   - type: DomainSecurity
     url: security/ship24-domain-security.yml
   - type: Authentication
