@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans 🚚 Couriers API
+  description: '## Getting started
+
+
+    Make sure to read the [Getting started](https://docs.ship24.com/getting-started) section of our [API Documentation](https://docs.ship24.com/) before using the endpoints presented below.
+
+    ## Documentation structure
+
+
+    Use the top navigation bar to switch from:
+
+
+    - Our [API Documentation](https://docs.ship24.com/), which contains a comprehensive explanation of how our API works.
+
+    - Our [API Reference](https://docs.ship24.com/tracking-api-reference/), which contains the specification of each of our endpoints.
+
+    - Our [Support](https://docs.ship24.com/support/introduction) section, which contains help articles for most of the common questions and issues you may encounter.
+
+
+    ## Import our documentation into your HTTP client
+
+
+    Our API Reference is available as an Open API 3.1 format file, which is supported by most HTTP clients.
+
+
+    - Latest version: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
+
+
+    | <!-- -->                                                     | <!-- -->                                                                                                                                                     |
+
+    | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+    | ![Postman](/img/postman-logo.svg) Postman                    | In Postman, click on "Import", go on the "Link" tab, and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml`                           |
+
+    | <img src="/img/insomnia-logo.png" width="32"></img> Insomnia | From Insomnia preferences, locate the "Import data" option, choose "From URL", and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml` |'
+  version: 1.0.0
+  contact:
+    name: Ship24
+    url: https://www.ship24.com/contact-us
+servers:
+- url: https://api.ship24.com
+tags:
+- name: 🚚 Couriers
+paths:
+  /public/v1/couriers:
+    get:
+      tags:
+      - 🚚 Couriers
+      summary: Get all couriers
+      description: This endpoint will return the list of all couriers supported by Ship24, identified by their `courierCode`.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        example: Bearer your_api_key
+        description: Your `api_key` prefixed with `Bearer`.
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      couriers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            courierCode:
+                              type: string
+                              example: us-post
+                              description: The codified code of this courier in Ship24 system.
+                            courierName:
+                              type: string
+                              example: USPS
+                              description: The courier name.
+                            website:
+                              type:
+                              - string
+                              - 'null'
+                              example: https://www.usps.com
+                              description: The courier public website.
+                            isPost:
+                              type: boolean
+                              example: true
+                              description: '`true` in case the courier is a postal operator.'
+                            countryCode:
+                              type:
+                              - string
+                              - 'null'
+                              format: ISO 3166-1 alpha-2
+                              example: US
+                              description: The main country in which the courier is operating.
+                            requiredFields:
+                              type:
+                              - array
+                              - 'null'
+                              items:
+                                type: string
+                                enum:
+                                - destinationPostCode
+                                - destinationCountryCode
+                                - courierAccount
+                              example:
+                              - destinationCountryCode
+                              - destinationPostCode
+                              description: Indicate which additional information is required by the courier to get optimal tracking results. See [Additional information](https://docs.ship24.com/couriers#required-fields)
+                            isDeprecated:
+                              type:
+                              - boolean
+                              example: false
+                              description: '`true` in case the courier is deprecated. See [Deprecated couriers](https://docs.ship24.com/couriers#deprecated-couriers)'
+              examples:
+                success:
+                  value:
+                    data:
+                      couriers:
+                      - courierCode: us-post
+                        courierName: USPS
+                        website: https://www.usps.com
+                        isPost: true
+                        countryCode: US
+                        requiredFields: null
+                        isDeprecated: false
+                      - courierCode: fr-post
+                        courierName: La Poste
+                        website: http://www.laposte.fr/
+                        isPost: true
+                        countryCode: FR
+                        requiredFields:
+                        - destinationCountryCode
+                        isDeprecated: false
+                      - courierCode: palletways
+                        courierName: Palletways
+                        website: https://www.palletways.com/
+                        isPost: false
+                        countryCode: GB
+                        requiredFields:
+                        - destinationPostCode
+                        isDeprecated: false
+      operationId: get-couriers
+components:
+  securitySchemes:
+    Authorization:
+      name: Bearer your_api_key
+      type: apiKey
+      in: header
+      description: 'The Ship24 API uses API keys to authenticate requests. You can [view and manage them in your Dashboard](https://dashboard.ship24.com/integrations/api-keys). A `Default` API key is created after you subscribe to a plan.
+
+
+        To authenticate your requests, include an `Authorization` HTTP header to all your requests with the following value: `Bearer your_api_key`. (Replace `your_api_key` by the one from your dashboard and don''t forget the `Bearer` prefix.)'
