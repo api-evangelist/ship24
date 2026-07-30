@@ -1,65 +1,149 @@
 aid: ship24
 url: https://raw.githubusercontent.com/api-evangelist/ship24/refs/heads/main/apis.yml
 apis:
-  - aid: ship24:ship24-tracking-api
-    name: Ship24 Tracking API
-    tags:
-      - Tracking
-      - Logistics
-      - Shipping
-      - Parcels
-      - Couriers
-      - Webhooks
-      - Ecommerce
-    humanURL: https://docs.ship24.com/
-    baseURL: https://api.ship24.com
-    properties:
-      - url: https://docs.ship24.com/
-        type: Documentation
-      - url: https://docs.ship24.com/tracking-api-reference/
-        type: APIReference
-      - url: https://docs.ship24.com/getting-started
-        type: GettingStarted
-      - url: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
-        type: OpenAPI
-      - url: openapi/ship24-tracking-api-openapi.yml
-        type: OpenAPI
-      - url: https://docs.ship24.com/webhooks
-        type: Webhooks
-      - url: https://docs.ship24.com/rate-limiter
-        type: RateLimits
-      - url: https://github.com/Ship24/n8n-nodes-ship24
-        type: Integrations
-      - url: rules/ship24-rules.yml
-        type: SpectralRules
-      - url: json-schema/ship24-tracker-schema.json
-        type: JSONSchema
-      - url: json-schema/ship24-tracking-result-schema.json
-        type: JSONSchema
-      - url: json-structure/ship24-tracker-structure.json
-        type: JSONStructure
-      - url: json-ld/ship24-context.jsonld
-        type: JSONLD
-      - url: vocabulary/ship24-vocabulary.yml
-        type: Vocabulary
-      - url: examples/ship24-create-tracker-example.json
-        type: Examples
-      - url: examples/ship24-tracking-result-example.json
-        type: Examples
-      - url: plans/ship24-plans-pricing.yml
-        type: Plans
-      - url: rate-limits/ship24-rate-limits.yml
-        type: RateLimitsArtifact
-      - url: finops/ship24-finops.yml
-        type: FinOps
-    description: >-
-      The Ship24 Tracking API is a universal package tracking aggregator that abstracts 1,500+ couriers worldwide behind
-      a single REST endpoint. Developers create a Tracker by submitting a tracking number (with optional courier hint)
-      and receive a normalized timeline of shipment events — accepted, in transit, out for delivery, delivered,
-      exception, pending, etc. — pushed via webhooks or pulled by tracker ID. The API exposes courier auto-detection,
-      bulk tracker creation, a courier catalog endpoint, and webhook resend tooling for replay. It powers branded
-      tracking pages, dashboards, and post-purchase customer experiences across ecommerce, 3PL, and marketplace
-      workloads.
+- aid: ship24:ship24-api-for-per-call-plans-api
+  name: Ship24 ➕ API for per-call plans API
+  description: >-
+    The **Tracking API (Per-call Plans)** is a specific product and associated endpoint on which usage
+    is measured per API Call made. Each API call is synchronously fetching data from couriers which make
+    it slower and more depend on courier's system availability.
+
+
+    Our standard "Per-shipment" product & plans remain the best choice as it offers more features, allow
+    faster tracking information fetching with less dependency on courier's system availability at a lower
+    cost overall.
+
+
+    > ⚠ You need an active "Per-call" subscription to use this endpoint.
+  humanURL: https://docs.ship24.com/
+  baseURL: https://api.ship24.com
+  tags:
+  - ➕ API for per-call plans
+  properties:
+  - type: OpenAPI
+    url: openapi/ship24-api-for-per-call-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ship24.com/
+  - type: APIReference
+    url: https://docs.ship24.com/tracking-api-reference/
+  - type: GettingStarted
+    url: https://docs.ship24.com/getting-started
+  - type: Webhooks
+    url: https://docs.ship24.com/webhooks
+  - type: RateLimits
+    url: https://docs.ship24.com/rate-limiter
+  - type: Integrations
+    url: https://github.com/Ship24/n8n-nodes-ship24
+  - type: SpectralRules
+    url: rules/ship24-rules.yml
+  - type: JSONSchema
+    url: json-schema/ship24-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/ship24-tracking-result-schema.json
+  - type: JSONStructure
+    url: json-structure/ship24-tracker-structure.json
+  - type: JSONLD
+    url: json-ld/ship24-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/ship24-vocabulary.yml
+  - type: Examples
+    url: examples/ship24-create-tracker-example.json
+  - type: Examples
+    url: examples/ship24-tracking-result-example.json
+  - type: Plans
+    url: plans/ship24-plans-pricing.yml
+  - type: RateLimitsArtifact
+    url: rate-limits/ship24-rate-limits.yml
+  - type: FinOps
+    url: finops/ship24-finops.yml
+- aid: ship24:ship24-couriers-api
+  name: Ship24 🚚 Couriers API
+  description: The 🚚 Couriers API from Ship24 — 1 operation(s) for 🚚 couriers.
+  humanURL: https://docs.ship24.com/
+  baseURL: https://api.ship24.com
+  tags:
+  - 🚚 Couriers
+  properties:
+  - type: OpenAPI
+    url: openapi/ship24-couriers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ship24.com/
+  - type: APIReference
+    url: https://docs.ship24.com/tracking-api-reference/
+  - type: GettingStarted
+    url: https://docs.ship24.com/getting-started
+  - type: Webhooks
+    url: https://docs.ship24.com/webhooks
+  - type: RateLimits
+    url: https://docs.ship24.com/rate-limiter
+  - type: Integrations
+    url: https://github.com/Ship24/n8n-nodes-ship24
+  - type: SpectralRules
+    url: rules/ship24-rules.yml
+  - type: JSONSchema
+    url: json-schema/ship24-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/ship24-tracking-result-schema.json
+  - type: JSONStructure
+    url: json-structure/ship24-tracker-structure.json
+  - type: JSONLD
+    url: json-ld/ship24-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/ship24-vocabulary.yml
+  - type: Examples
+    url: examples/ship24-create-tracker-example.json
+  - type: Examples
+    url: examples/ship24-tracking-result-example.json
+  - type: Plans
+    url: plans/ship24-plans-pricing.yml
+  - type: RateLimitsArtifact
+    url: rate-limits/ship24-rate-limits.yml
+  - type: FinOps
+    url: finops/ship24-finops.yml
+- aid: ship24:ship24-trackers-api
+  name: Ship24 📦 Trackers API
+  description: The 📦 Trackers API from Ship24 — 7 operation(s) for 📦 trackers.
+  humanURL: https://docs.ship24.com/
+  baseURL: https://api.ship24.com
+  tags:
+  - 📦 Trackers
+  properties:
+  - type: OpenAPI
+    url: openapi/ship24-trackers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ship24.com/
+  - type: APIReference
+    url: https://docs.ship24.com/tracking-api-reference/
+  - type: GettingStarted
+    url: https://docs.ship24.com/getting-started
+  - type: Webhooks
+    url: https://docs.ship24.com/webhooks
+  - type: RateLimits
+    url: https://docs.ship24.com/rate-limiter
+  - type: Integrations
+    url: https://github.com/Ship24/n8n-nodes-ship24
+  - type: SpectralRules
+    url: rules/ship24-rules.yml
+  - type: JSONSchema
+    url: json-schema/ship24-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/ship24-tracking-result-schema.json
+  - type: JSONStructure
+    url: json-structure/ship24-tracker-structure.json
+  - type: JSONLD
+    url: json-ld/ship24-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/ship24-vocabulary.yml
+  - type: Examples
+    url: examples/ship24-create-tracker-example.json
+  - type: Examples
+    url: examples/ship24-tracking-result-example.json
+  - type: Plans
+    url: plans/ship24-plans-pricing.yml
+  - type: RateLimitsArtifact
+    url: rate-limits/ship24-rate-limits.yml
+  - type: FinOps
+    url: finops/ship24-finops.yml
 name: Ship24
 tags:
   - Tracking
@@ -71,7 +155,19 @@ tags:
   - Ecommerce
   - PostPurchase
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ship24.png
 access: 3rd-Party
 created: '2026-05-25'
 modified: '2026-05-25'
