@@ -1,0 +1,18 @@
+{
+  "provider": "ship24",
+  "sources": [
+    "ship24-api-for-per-call-plans-api-openapi.yml",
+    "ship24-couriers-api-openapi.yml",
+    "ship24-trackers-api-openapi.yml"
+  ],
+  "outputs": [
+    "ship24-api-for-per-call-plans-api-openapi.yml",
+    "ship24-couriers-api-openapi.yml",
+    "ship24-trackers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
