@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans ➕ API for per-call plans API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "➕ API for per-call plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tracking results by tracking number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ship24.com/public/v1/tracking/search",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint will return the `tracking` corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nFor better accuracy, we strongly advise to provide extra information such as the origin country, destination postcode & country, and the shipping date.\n\n> 🛑 You need an active \"Per-call\" subscription to use this endpoint. Our standard \"Per-shipment\" product & plans remain the best choice as it offers more feature"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

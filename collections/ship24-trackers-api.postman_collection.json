@@ -1,0 +1,1459 @@
+{
+  "item": [
+    {
+      "id": "ef0fa875-0b7b-443d-bf91-fe239eec341b",
+      "name": "📦 Trackers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5e30168-1782-44c3-990d-1a489c7fe04d",
+          "name": "Create a tracker",
+          "request": {
+            "name": "Create a tracker",
+            "description": {
+              "content": "This endpoint allows you to create a new `Tracker`, based on the specified information. Once a `Tracker` is created, you will be able to receive webhook notifications and/or fetch its tracking result.\n\n> This endpoint is idempotent, any subsequent calls with the same parameters won't duplicate `Tracker`. However, providing different information in any of the fields will create a new `Tracker`, as it will be considered as a new shipment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trackingNumber\": \"<string>\",\n  \"shipmentReference\": \"<string>\",\n  \"clientTrackerId\": \"<string>\",\n  \"originCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationPostCode\": \"<string>\",\n  \"shippingDate\": \"<dateTime>\",\n  \"courierCode\": [\n    \"<string>\",\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"courierName\": \"<string>\",\n  \"trackingUrl\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"title\": \"<string>\",\n  \"recipient\": {\n    \"email\": \"<email>\",\n    \"name\": \"<string>\"\n  },\n  \"settings\": {\n    \"restrictTrackingToCourierCode\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "433d9186-d6eb-4ceb-b225-6fd36392c8c9",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackingNumber\": \"9400115901047177598206\",\n  \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n  \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n  \"originCountryCode\": \"CN\",\n  \"destinationCountryCode\": \"US\",\n  \"destinationPostCode\": \"94901\",\n  \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n  \"courierCode\": [\n    \"us-post\"\n  ],\n  \"courierName\": \"USPS Standard\",\n  \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n  \"orderNumber\": \"DF14R2022\",\n  \"settings\": {\n    \"restrictTrackingToCourierCode\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"tracker\": {\n      \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n      \"trackingNumber\": \"9400115901047177598206\",\n      \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n      \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n      \"isSubscribed\": true,\n      \"isTracked\": true,\n      \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48a5cf88-7f33-4669-a4ee-c8781552ec39",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackingNumber\": \"9400115901047177598206\",\n  \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n  \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n  \"originCountryCode\": \"CN\",\n  \"destinationCountryCode\": \"US\",\n  \"destinationPostCode\": \"94901\",\n  \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n  \"courierCode\": [\n    \"us-post\"\n  ],\n  \"courierName\": \"USPS Standard\",\n  \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n  \"orderNumber\": \"DF14R2022\",\n  \"settings\": {\n    \"restrictTrackingToCourierCode\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"validation_error\",\n      \"message\": \"The trackingNumber provided seems invalid. Please make sure it's between 5 and 50 characters, containing only letters, numbers, and hyphens, and without dummy patterns and consecutive numbers.\"\n    }\n  ],\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5e0fb03-a60b-4e0d-a01b-11437617a50b",
+          "name": "List existing Trackers",
+          "request": {
+            "name": "List existing Trackers",
+            "description": {
+              "content": "This endpoint return a list of all existing `Trackers`, using page-based pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) The page index, starting from 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) The maximum number of trackers returned per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<integer>",
+                  "description": "Defines the sorting order of trackers. Use `1` for ascending (`createdAt` oldest first) and `-1` for descending (`createdAt` newest first). The default is ascending (`1`) to ensure stable pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e2cbf22-168d-482b-8c38-5ecac59dcefc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trackers\": [\n      {\n        \"trackerId\": \"0018fa7d-0040-478c-9043-70c3e240e7b3\",\n        \"trackingNumber\": \"9400115901047177598206\",\n        \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n        \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.181Z\"\n      },\n      {\n        \"trackerId\": \"001a975d-768d-4e16-a2b2-cff8a8f7e7fb\",\n        \"trackingNumber\": \"9400111202544843610609\",\n        \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n        \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.179Z\"\n      },\n      {\n        \"trackerId\": \"002be605-6098-444c-8dff-762b314438ef\",\n        \"trackingNumber\": \"LA680658838NL\",\n        \"shipmentReference\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.189Z\"\n      },\n      {\n        \"trackerId\": \"0035a920-c41b-4d12-8c2a-65b13a5da389\",\n        \"trackingNumber\": \"LT621980897\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.195Z\"\n      },\n      {\n        \"trackerId\": \"004cece2-1a17-407f-97f8-9fd077dfa6b6\",\n        \"trackingNumber\": 340434639921278850,\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.196Z\"\n      },\n      {\n        \"trackerId\": \"0077a6e2-39a3-48b7-a91f-e6e4f2bb9422\",\n        \"trackingNumber\": \"H00F6A0043571732\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.189Z\"\n      },\n      {\n        \"trackerId\": \"008a8ebc-28d5-427b-92c4-4ab4a54e9eef\",\n        \"trackingNumber\": \"SYRM129017918\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.187Z\"\n      },\n      {\n        \"trackerId\": \"00969ba9-9d16-4b14-803c-c47737cd0ece\",\n        \"trackingNumber\": \"LY396870931DE\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.182Z\"\n      },\n      {\n        \"trackerId\": \"0098fa69-fa43-42c3-b315-6e72245f2f4c\",\n        \"trackingNumber\": \"H00F6A0041475344\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.180Z\"\n      },\n      {\n        \"trackerId\": \"00b0ec18-ed69-48bc-90c0-8f5349f0fb5b\",\n        \"trackingNumber\": \"H00F6A0043810576\",\n        \"shipmentReference\": null,\n        \"clientTrackerId\": null,\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2022-12-23T10:55:39.194Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c86f0655-0b44-422c-b29c-650bfe4c24e9",
+          "name": "Bulk create trackers",
+          "request": {
+            "name": "Bulk create trackers",
+            "description": {
+              "content": "This endpoint allows you to create up to 100 new `Trackers` in a single operation, based on the specified information. Once the `Trackers` are created, you will be able to receive webhook notifications and/or fetch their tracking results.\n\n> While tracker creation is idempotent, this endpoint itself is not. Any duplicate within the request or any tracker parameters matching an existing tracker will not create a duplicate `Tracker`. However, providing different information in any of the fields will create a new `Tracker`, as it will be considered as a new shipment.\n\nThe response will include a summary of:\n- The number of trackers successfully created.\n- The number of trackers ignored because they already exist.\n- The number of trackers that could not be created due to errors.\n\nAdditionally, the response will provide details about the created trackers and any errors that occurred during the tracker creation process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"trackingNumber\": \"<string>\",\n    \"shipmentReference\": \"<string>\",\n    \"clientTrackerId\": \"<string>\",\n    \"originCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n    \"destinationCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n    \"destinationPostCode\": \"<string>\",\n    \"shippingDate\": \"<dateTime>\",\n    \"courierCode\": [\n      \"<string>\",\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"courierName\": \"<string>\",\n    \"trackingUrl\": \"<string>\",\n    \"orderNumber\": \"<string>\",\n    \"title\": \"<string>\",\n    \"recipient\": {\n      \"email\": \"<email>\",\n      \"name\": \"<string>\"\n    },\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": \"<boolean>\"\n    }\n  },\n  {\n    \"trackingNumber\": \"<string>\",\n    \"shipmentReference\": \"<string>\",\n    \"clientTrackerId\": \"<string>\",\n    \"originCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n    \"destinationCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n    \"destinationPostCode\": \"<string>\",\n    \"shippingDate\": \"<dateTime>\",\n    \"courierCode\": [\n      \"<string>\",\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"courierName\": \"<string>\",\n    \"trackingUrl\": \"<string>\",\n    \"orderNumber\": \"<string>\",\n    \"title\": \"<string>\",\n    \"recipient\": {\n      \"email\": \"<email>\",\n      \"name\": \"<string>\"\n    },\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": \"<boolean>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6dc7ac7-b654-40af-91c9-bac90b5a9741",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"trackingNumber\": \"9400115901047177598206\",\n    \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n    \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS Standard\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n    \"orderNumber\": \"DF14R2022\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  },\n  {\n    \"trackingNumber\": \"9400111202544843610609\",\n    \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n    \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-05T14:21:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111202544843610609\",\n    \"orderNumber\": \"DF14R2024\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"summary\": {\n    \"totalInputs\": 2,\n    \"totalCreated\": 2,\n    \"totalExisting\": 0,\n    \"totalErrors\": 0\n  },\n  \"data\": [\n    {\n      \"itemStatus\": \"created\",\n      \"inputData\": {\n        \"trackingNumber\": \"9400115901047177598206\",\n        \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n        \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n        \"originCountryCode\": \"CN\",\n        \"destinationCountryCode\": \"US\",\n        \"destinationPostCode\": \"94901\",\n        \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n        \"courierCode\": [\n          \"us-post\"\n        ],\n        \"courierName\": \"USPS Standard\",\n        \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n        \"orderNumber\": \"DF14R2022\",\n        \"settings\": {\n          \"restrictTrackingToCourierCode\": true\n        }\n      },\n      \"tracker\": {\n        \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n        \"trackingNumber\": \"9400115901047177598206\",\n        \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n        \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n      },\n      \"errors\": null\n    },\n    {\n      \"itemStatus\": \"created\",\n      \"inputData\": {\n        \"trackingNumber\": \"9400111202544843610609\",\n        \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n        \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n        \"originCountryCode\": \"CN\",\n        \"destinationCountryCode\": \"US\",\n        \"destinationPostCode\": \"94901\",\n        \"shippingDate\": \"2021-03-05T14:21:00.000Z\",\n        \"courierCode\": [\n          \"us-post\"\n        ],\n        \"courierName\": \"USPS\",\n        \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111202544843610609\",\n        \"orderNumber\": \"DF14R2024\",\n        \"settings\": {\n          \"restrictTrackingToCourierCode\": true\n        }\n      },\n      \"tracker\": {\n        \"trackerId\": \"001a975d-768d-4e16-a2b2-cff8a8f7e7fb\",\n        \"trackingNumber\": \"9400111202544843610609\",\n        \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n        \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n      },\n      \"errors\": null\n    }\n  ],\n  \"error\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d20ffbd-3202-4a61-8578-82c8a2040bb5",
+              "name": "Partially Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"trackingNumber\": \"9400115901047177598206\",\n    \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n    \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS Standard\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n    \"orderNumber\": \"DF14R2022\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  },\n  {\n    \"trackingNumber\": \"9400111202544843610609\",\n    \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n    \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-05T14:21:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111202544843610609\",\n    \"orderNumber\": \"DF14R2024\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"partial\",\n  \"summary\": {\n    \"totalInputs\": 2,\n    \"totalCreated\": 1,\n    \"totalExisting\": 0,\n    \"totalErrors\": 1\n  },\n  \"data\": [\n    {\n      \"itemStatus\": \"created\",\n      \"inputData\": {\n        \"trackingNumber\": \"9400115901047177598206\",\n        \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n        \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n        \"originCountryCode\": \"CN\",\n        \"destinationCountryCode\": \"US\",\n        \"destinationPostCode\": \"94901\",\n        \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n        \"courierCode\": [\n          \"us-post\"\n        ],\n        \"courierName\": \"USPS Standard\",\n        \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n        \"orderNumber\": \"DF14R2022\",\n        \"settings\": {\n          \"restrictTrackingToCourierCode\": true\n        }\n      },\n      \"tracker\": {\n        \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n        \"trackingNumber\": \"9400115901047177598206\",\n        \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n        \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n        \"isSubscribed\": true,\n        \"isTracked\": true,\n        \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n      },\n      \"errors\": null\n    },\n    {\n      \"itemStatus\": \"error\",\n      \"inputData\": {\n        \"trackingNumber\": \"TEST\"\n      },\n      \"errors\": [\n        {\n          \"code\": \"validation_error\",\n          \"message\": \"The trackingNumber provided seems invalid. Please make sure it's between 5 and 50 characters, containing only letters, numbers, and hyphens, and without dummy patterns and consecutive numbers.\"\n        }\n      ]\n    }\n  ],\n  \"error\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e82fd67-0128-4c2d-8384-56dfb657df1c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"trackingNumber\": \"9400115901047177598206\",\n    \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n    \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS Standard\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n    \"orderNumber\": \"DF14R2022\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  },\n  {\n    \"trackingNumber\": \"9400111202544843610609\",\n    \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n    \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-05T14:21:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111202544843610609\",\n    \"orderNumber\": \"DF14R2024\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"summary\": {\n    \"totalInputs\": 1,\n    \"totalCreated\": 0,\n    \"totalExisting\": 0,\n    \"totalErrors\": 1\n  },\n  \"data\": [\n    {\n      \"itemStatus\": \"error\",\n      \"inputData\": {\n        \"trackingNumber\": \"TEST\"\n      },\n      \"tracker\": null,\n      \"errors\": [\n        {\n          \"code\": \"validation_error\",\n          \"message\": \"The trackingNumber provided seems invalid. Please make sure it's between 5 and 50 characters, containing only letters, numbers, and hyphens, and without dummy patterns and consecutive numbers.\"\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"code\": \"processing_error\",\n    \"message\": \"Every single item failed validation. Please refer to the error field for each item.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79eeee71-15e1-4fec-ab81-10d2837c7500",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"trackingNumber\": \"9400115901047177598206\",\n    \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n    \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS Standard\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n    \"orderNumber\": \"DF14R2022\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  },\n  {\n    \"trackingNumber\": \"9400111202544843610609\",\n    \"shipmentReference\": \"85bff7fa-38ed-b1ba-4c15-322e41d16221\",\n    \"clientTrackerId\": \"c284fa2c-0808-48ea-bb9e-05c9135dc127\",\n    \"originCountryCode\": \"CN\",\n    \"destinationCountryCode\": \"US\",\n    \"destinationPostCode\": \"94901\",\n    \"shippingDate\": \"2021-03-05T14:21:00.000Z\",\n    \"courierCode\": [\n      \"us-post\"\n    ],\n    \"courierName\": \"USPS\",\n    \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111202544843610609\",\n    \"orderNumber\": \"DF14R2024\",\n    \"settings\": {\n      \"restrictTrackingToCourierCode\": true\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"summary\": null,\n  \"data\": null,\n  \"error\": {\n    \"code\": \"quota_limit_reached\",\n    \"message\": \"No more quota left. Please update your plan.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8197f40f-b552-4ae5-9217-3ef4c26eb7d4",
+          "name": "Create a tracker and get tracking results",
+          "request": {
+            "name": "Create a tracker and get tracking results",
+            "description": {
+              "content": "This endpoint creates a new `Tracker` on the specified tracking number , if it does not exist, and returns the tracking results directly. We advise using this endpoint if you are not interested in receiving webhook notifications and just want to fetch tracking results. This way, you can always call this unified endpoint to get tracking results, without worrying about `Tracker` creation and management.\n\n\n> 🛑 During the very first call for a tracking number, this endpoint will create a `Tracker` and try to return tracking results synchronously if the courier allows it, which can delay the initial answer, at the benefit of getting the tracking results from the first call. **Initial response time may range from a few seconds, up to 1 minute, and results will depend on the courier's system availability at that time.** Subsequent calls will be instantaneous as the `Tracker` will already exist with tracking results ready to use and constantly updated.\n\n> This endpoint is idempotent, any subsequent calls with the same parameters won't duplicate `Tracker`. However, providing different information in any of the fields will create a new `Tracker` as it will be considered as a new shipment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trackingNumber\": \"<string>\",\n  \"shipmentReference\": \"<string>\",\n  \"clientTrackerId\": \"<string>\",\n  \"originCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationPostCode\": \"<string>\",\n  \"shippingDate\": \"<dateTime>\",\n  \"courierCode\": [\n    \"<string>\",\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"courierName\": \"<string>\",\n  \"trackingUrl\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"title\": \"<string>\",\n  \"recipient\": {\n    \"email\": \"<email>\",\n    \"name\": \"<string>\"\n  },\n  \"settings\": {\n    \"restrictTrackingToCourierCode\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9b8bd5c-98b6-46f9-a9c2-233c03edcf66",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackingNumber\": \"9400115901047177598206\",\n  \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n  \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n  \"originCountryCode\": \"CN\",\n  \"destinationCountryCode\": \"US\",\n  \"destinationPostCode\": \"94901\",\n  \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n  \"courierCode\": [\n    \"us-post\"\n  ],\n  \"courierName\": \"USPS Standard\",\n  \"trackingUrl\": \"https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206\",\n  \"orderNumber\": \"DF14R2022\",\n  \"settings\": {\n    \"restrictTrackingToCourierCode\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trackings\": [\n      {\n        \"tracker\": {\n          \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n          \"trackingNumber\": \"9400115901047177598206\",\n          \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n          \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n          \"isSubscribed\": true,\n          \"isTracked\": true,\n          \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n        },\n        \"shipment\": {\n          \"shipmentId\": \"f4f888d7-d140-423f-9a48-e0689d27e098\",\n          \"statusCode\": \"delivery_delivered\",\n          \"statusCategory\": \"delivery\",\n          \"statusMilestone\": \"delivered\",\n          \"originCountryCode\": \"US\",\n          \"destinationCountryCode\": \"CN\",\n          \"delivery\": {\n            \"estimatedDeliveryDate\": \"2021-03-04T18:00:00\",\n            \"courierEstimatedDeliveryDate\": {\n              \"from\": \"2021-03-04T17:00:00\",\n              \"to\": \"2021-03-04T18:00:00\"\n            },\n            \"service\": null,\n            \"signedBy\": null\n          },\n          \"trackingNumbers\": [\n            {\n              \"tn\": \"9400115901047177598206\"\n            },\n            {\n              \"tn\": \"9400111202544843610364\"\n            }\n          ],\n          \"recipient\": {\n            \"name\": null,\n            \"address\": null,\n            \"postCode\": \"94901\",\n            \"city\": null,\n            \"subdivision\": null\n          }\n        },\n        \"events\": [\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f46\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Delivered to the addressee\",\n            \"occurrenceDatetime\": \"2021-03-04T17:12:57\",\n            \"order\": 9,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_delivered\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"delivered\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a00ja\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Out for Delivery\",\n            \"occurrenceDatetime\": \"2021-03-04T10:12:57\",\n            \"order\": 8,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_out_for_delivery\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"out_for_delivery\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0765\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Hub, Your item arrived at the hub.\",\n            \"occurrenceDatetime\": \"2021-03-04T06:12:57\",\n            \"order\": 7,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f67\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Processed Through Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T17:12:57\",\n            \"order\": 6,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f24\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T15:38:57\",\n            \"order\": 5,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"5adff7f7-c370-4026-9ff5-2ff4156ff2ff\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Flight Departure\",\n            \"occurrenceDatetime\": \"2021-03-02T23:24:50\",\n            \"order\": 4,\n            \"location\": \"Beijing airport\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"918c20dc-9a9b-4588-bf62-ded9761d9621\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Dispatched from Office of Exchange\",\n            \"occurrenceDatetime\": \"2021-03-02T22:23:41\",\n            \"order\": 3,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"b8dabe5f-1022-41c5-ad3a-8c8e4aacc965\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Departure from Local Sorting Center\",\n            \"occurrenceDatetime\": \"2021-03-02T19:24:57\",\n            \"order\": 2,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-6f3afa6a0f45\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Package Received\",\n            \"occurrenceDatetime\": \"2021-03-02T15:38:57\",\n            \"order\": 1,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": \"transit\",\n            \"statusMilestone\": \"in_transit\"\n          }\n        ],\n        \"statistics\": {\n          \"timestamps\": {\n            \"infoReceivedDatetime\": \"2021-03-02T15:38:57\",\n            \"inTransitDatetime\": \"2021-03-02T15:38:57\",\n            \"outForDeliveryDatetime\": \"2021-03-04T10:12:57\",\n            \"failedAttemptDatetime\": null,\n            \"availableForPickupDatetime\": null,\n            \"exceptionDatetime\": null,\n            \"deliveredDatetime\": \"2021-03-04T17:12:57\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7efa4d2-1a42-4a81-ace8-eaf76fa1e582",
+          "name": "Get an existing tracker",
+          "request": {
+            "name": "Get an existing tracker",
+            "description": {
+              "content": "This endpoint return an existing `Tracker` for a given `trackerId`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                ":trackerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "<string>",
+                  "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackerId",
+                  "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0886c49a-5bad-4df0-a932-bdcb6a66440e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"tracker\": {\n      \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n      \"trackingNumber\": \"9400115901047177598206\",\n      \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n      \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n      \"isSubscribed\": true,\n      \"isTracked\": true,\n      \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e28af5e5-4819-49e1-a81e-12d1e2b56ac0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"tracker_not_found\",\n      \"message\": \"Tracker not found.\"\n    }\n  ],\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96d07684-9f20-4962-807a-e09655f43652",
+          "name": "Update an existing tracker",
+          "request": {
+            "name": "Update an existing tracker",
+            "description": {
+              "content": "This endpoint allows to modify an existing `Tracker` matching with the given `trackerId`.  \n\n> Once the Tracker has gathered shipment tracking information, certain fields related to the shipment data cannot be modified. These include: \n> - `courierCode` \n> - `originCountryCode` \n> - `destinationCountryCode` \n> - `shippingDate`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                ":trackerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "<string>",
+                  "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackerId",
+                  "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isSubscribed\": \"<boolean>\",\n  \"courierCode\": [\n    \"<string>\",\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"originCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationCountryCode\": \"<ISO 3166-1 alpha-2/alpha-3>\",\n  \"destinationPostCode\": \"<string>\",\n  \"shippingDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77c04354-11b4-4295-8c08-1ce23586c339",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isSubscribed\": false,\n  \"originCountryCode\": \"CN\",\n  \"destinationCountryCode\": \"US\",\n  \"destinationPostCode\": \"94901\",\n  \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n  \"courierCode\": [\n    \"us-post\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"tracker\": {\n      \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n      \"trackingNumber\": \"9400115901047177598206\",\n      \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n      \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n      \"isSubscribed\": true,\n      \"isTracked\": true,\n      \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6078841-9f90-462d-a0a3-b0c81aff536f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "application/json; charset=utf-8",
+                    "key": "Content-Type",
+                    "value": "application/json; charset=utf-8"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isSubscribed\": false,\n  \"originCountryCode\": \"CN\",\n  \"destinationCountryCode\": \"US\",\n  \"destinationPostCode\": \"94901\",\n  \"shippingDate\": \"2021-03-01T11:09:00.000Z\",\n  \"courierCode\": [\n    \"us-post\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"tracker_not_updatable\",\n      \"message\": \"This Tracker can't be updated as the corresponding shipment has been already processed by our system. Please create a new Tracker.\"\n    }\n  ],\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9711523b-97e4-48b7-b9df-e23d7de443f7",
+          "name": "Get tracking results for existing trackers by tracking number",
+          "request": {
+            "name": "Get tracking results for existing trackers by tracking number",
+            "description": {
+              "content": "This endpoint will return the `tracking` result corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section. \n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                "search",
+                ":trackingNumber",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackingNumber",
+                  "description": "(Required) **Required** Tracking number of the parcel."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12def3a3-5445-45b1-a325-018d32e135b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    "search",
+                    ":trackingNumber",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackingNumber",
+                      "description": "(Required) **Required** Tracking number of the parcel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trackings\": [\n      {\n        \"tracker\": {\n          \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n          \"trackingNumber\": \"9400115901047177598206\",\n          \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n          \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n          \"isSubscribed\": true,\n          \"isTracked\": true,\n          \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n        },\n        \"shipment\": {\n          \"shipmentId\": \"f4f888d7-d140-423f-9a48-e0689d27e098\",\n          \"statusCode\": \"delivery_delivered\",\n          \"statusCategory\": \"delivery\",\n          \"statusMilestone\": \"delivered\",\n          \"originCountryCode\": \"US\",\n          \"destinationCountryCode\": \"CN\",\n          \"delivery\": {\n            \"estimatedDeliveryDate\": \"2021-03-04T18:00:00\",\n            \"courierEstimatedDeliveryDate\": {\n              \"from\": \"2021-03-04T17:00:00\",\n              \"to\": \"2021-03-04T18:00:00\"\n            },\n            \"service\": null,\n            \"signedBy\": null\n          },\n          \"trackingNumbers\": [\n            {\n              \"tn\": \"9400115901047177598206\"\n            },\n            {\n              \"tn\": \"9400111202544843610364\"\n            }\n          ],\n          \"recipient\": {\n            \"name\": null,\n            \"address\": null,\n            \"postCode\": \"94901\",\n            \"city\": null,\n            \"subdivision\": null\n          }\n        },\n        \"events\": [\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f46\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Delivered to the addressee\",\n            \"occurrenceDatetime\": \"2021-03-04T17:12:57\",\n            \"order\": 9,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_delivered\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"delivered\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a00ja\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Out for Delivery\",\n            \"occurrenceDatetime\": \"2021-03-04T10:12:57\",\n            \"order\": 8,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_out_for_delivery\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"out_for_delivery\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0765\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Hub, Your item arrived at the hub.\",\n            \"occurrenceDatetime\": \"2021-03-04T06:12:57\",\n            \"order\": 7,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f67\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Processed Through Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T17:12:57\",\n            \"order\": 6,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f24\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T15:38:57\",\n            \"order\": 5,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"5adff7f7-c370-4026-9ff5-2ff4156ff2ff\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Flight Departure\",\n            \"occurrenceDatetime\": \"2021-03-02T23:24:50\",\n            \"order\": 4,\n            \"location\": \"Beijing airport\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"918c20dc-9a9b-4588-bf62-ded9761d9621\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Dispatched from Office of Exchange\",\n            \"occurrenceDatetime\": \"2021-03-02T22:23:41\",\n            \"order\": 3,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"b8dabe5f-1022-41c5-ad3a-8c8e4aacc965\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Departure from Local Sorting Center\",\n            \"occurrenceDatetime\": \"2021-03-02T19:24:57\",\n            \"order\": 2,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-6f3afa6a0f45\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Package Received\",\n            \"occurrenceDatetime\": \"2021-03-02T15:38:57\",\n            \"order\": 1,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": \"transit\",\n            \"statusMilestone\": \"in_transit\"\n          }\n        ],\n        \"statistics\": {\n          \"timestamps\": {\n            \"infoReceivedDatetime\": \"2021-03-02T15:38:57\",\n            \"inTransitDatetime\": \"2021-03-02T15:38:57\",\n            \"outForDeliveryDatetime\": \"2021-03-04T10:12:57\",\n            \"failedAttemptDatetime\": null,\n            \"availableForPickupDatetime\": null,\n            \"exceptionDatetime\": null,\n            \"deliveredDatetime\": \"2021-03-04T17:12:57\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2be003f-ad97-499f-a92a-093fc46d9c76",
+          "name": "Get tracking results for an existing tracker",
+          "request": {
+            "name": "Get tracking results for an existing tracker",
+            "description": {
+              "content": "This endpoint return the `Tracking` results of an existing `Tracker` matching with the given trackerId. As trackerId are unique, the `Trackings` array will always have only one item. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                ":trackerId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "<string>",
+                  "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackerId",
+                  "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f01215d0-bd3e-4f4a-9311-a549f915ef4d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trackings\": [\n      {\n        \"tracker\": {\n          \"trackerId\": \"26148317-7502-d3ac-44a9-546d240ac0dd\",\n          \"trackingNumber\": \"9400115901047177598206\",\n          \"shipmentReference\": \"c6e4fef4-a816-b68f-4024-3b7e4c5a9f81\",\n          \"clientTrackerId\": \"3fa99515-3ca0-4901-85bb-056ee016799b\",\n          \"isSubscribed\": true,\n          \"isTracked\": true,\n          \"createdAt\": \"2021-03-10T05:13:00.000Z\"\n        },\n        \"shipment\": {\n          \"shipmentId\": \"f4f888d7-d140-423f-9a48-e0689d27e098\",\n          \"statusCode\": \"delivery_delivered\",\n          \"statusCategory\": \"delivery\",\n          \"statusMilestone\": \"delivered\",\n          \"originCountryCode\": \"US\",\n          \"destinationCountryCode\": \"CN\",\n          \"delivery\": {\n            \"estimatedDeliveryDate\": \"2021-03-04T18:00:00\",\n            \"courierEstimatedDeliveryDate\": {\n              \"from\": \"2021-03-04T17:00:00\",\n              \"to\": \"2021-03-04T18:00:00\"\n            },\n            \"service\": null,\n            \"signedBy\": null\n          },\n          \"trackingNumbers\": [\n            {\n              \"tn\": \"9400115901047177598206\"\n            },\n            {\n              \"tn\": \"9400111202544843610364\"\n            }\n          ],\n          \"recipient\": {\n            \"name\": null,\n            \"address\": null,\n            \"postCode\": \"94901\",\n            \"city\": null,\n            \"subdivision\": null\n          }\n        },\n        \"events\": [\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f46\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Delivered to the addressee\",\n            \"occurrenceDatetime\": \"2021-03-04T17:12:57\",\n            \"order\": 9,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_delivered\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"delivered\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a00ja\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Out for Delivery\",\n            \"occurrenceDatetime\": \"2021-03-04T10:12:57\",\n            \"order\": 8,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": \"delivery_out_for_delivery\",\n            \"statusCategory\": \"delivery\",\n            \"statusMilestone\": \"out_for_delivery\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0765\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Hub, Your item arrived at the hub.\",\n            \"occurrenceDatetime\": \"2021-03-04T06:12:57\",\n            \"order\": 7,\n            \"location\": \"SAN RAFAEL, CA 94901\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f67\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Processed Through Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T17:12:57\",\n            \"order\": 6,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-8f3afa6a0f24\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400111202544843610364\",\n            \"status\": \"Arrived at Regional Facility\",\n            \"occurrenceDatetime\": \"2021-03-03T15:38:57\",\n            \"order\": 5,\n            \"location\": \"LOS ANGELES CA INTERNATIONAL DISTRIBUTION CENTER\",\n            \"sourceCode\": \"usps-tracking\",\n            \"courierCode\": \"us-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"5adff7f7-c370-4026-9ff5-2ff4156ff2ff\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Flight Departure\",\n            \"occurrenceDatetime\": \"2021-03-02T23:24:50\",\n            \"order\": 4,\n            \"location\": \"Beijing airport\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"918c20dc-9a9b-4588-bf62-ded9761d9621\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Dispatched from Office of Exchange\",\n            \"occurrenceDatetime\": \"2021-03-02T22:23:41\",\n            \"order\": 3,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"b8dabe5f-1022-41c5-ad3a-8c8e4aacc965\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Departure from Local Sorting Center\",\n            \"occurrenceDatetime\": \"2021-03-02T19:24:57\",\n            \"order\": 2,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": null,\n            \"statusMilestone\": \"in_transit\"\n          },\n          {\n            \"eventId\": \"ee8ebe96-4eae-4a91-9a99-6f3afa6a0f45\",\n            \"trackingNumber\": \"9400111202544843610364\",\n            \"eventTrackingNumber\": \"9400115901047177598206\",\n            \"status\": \"Package Received\",\n            \"occurrenceDatetime\": \"2021-03-02T15:38:57\",\n            \"order\": 1,\n            \"location\": \"Beijing\",\n            \"sourceCode\": \"china-post-tracking\",\n            \"courierCode\": \"cn-post\",\n            \"statusCode\": null,\n            \"statusCategory\": \"transit\",\n            \"statusMilestone\": \"in_transit\"\n          }\n        ],\n        \"statistics\": {\n          \"timestamps\": {\n            \"infoReceivedDatetime\": \"2021-03-02T15:38:57\",\n            \"inTransitDatetime\": \"2021-03-02T15:38:57\",\n            \"outForDeliveryDatetime\": \"2021-03-04T10:12:57\",\n            \"failedAttemptDatetime\": null,\n            \"availableForPickupDatetime\": null,\n            \"exceptionDatetime\": null,\n            \"deliveredDatetime\": \"2021-03-04T17:12:57\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "471bb59e-41bd-462e-be38-4c773f996435",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"tracker_not_found\",\n      \"message\": \"Tracker not found.\"\n    }\n  ],\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df92080a-75d1-4531-a146-d030e4320926",
+          "name": "Resend webhooks of an existing tracker",
+          "request": {
+            "name": "Resend webhooks of an existing tracker",
+            "description": {
+              "content": "This endpoint allows to resend all webhook messages of an existing tracker. \n\nThis can be useful in case you missed some webhook messages or if you need to reprocess them for any reason.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "trackers",
+                ":trackerId",
+                "webhook-events",
+                "resend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "<string>",
+                  "description": "Parameter allowing to search either by `trackerId`or `clientTrackerId`. Default behavior is by `trackerId`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackerId",
+                  "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dafd5c3-fe2f-4725-aa49-734956919f43",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "trackers",
+                    ":trackerId",
+                    "webhook-events",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "trackerId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackerId",
+                      "description": "(Required) **Required** Id of the tracker, provided by Ship24 at creation. `clientTrackerId` can also be used in this field by employing the `searchBy` parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your `api_key` prefixed with `Bearer`.",
+                    "key": "Authorization",
+                    "value": "Bearer your_api_key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"summary\": {\n      \"totalResent\": 8\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ship24.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "00ca1e7e-f850-49c8-b0c1-847a32296757",
+    "name": "Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans 📦 Trackers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Getting started\n\nMake sure to read the [Getting started](https://docs.ship24.com/getting-started) section of our [API Documentation](https://docs.ship24.com/) before using the endpoints presented below.\n## Documentation structure\n\nUse the top navigation bar to switch from:\n\n- Our [API Documentation](https://docs.ship24.com/), which contains a comprehensive explanation of how our API works.\n- Our [API Reference](https://docs.ship24.com/tracking-api-reference/), which contains the specification of each of our endpoints.\n- Our [Support](https://docs.ship24.com/support/introduction) section, which contains help articles for most of the common questions and issues you may encounter.\n\n## Import our documentation into your HTTP client\n\nOur API Reference is available as an Open API 3.1 format file, which is supported by most HTTP clients.\n\n- Latest version: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml\n\n| <!-- -->                                                     | <!-- -->                                                                                                                                                     |\n| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| ![Postman](/img/postman-logo.svg) Postman                    | In Postman, click on \"Import\", go on the \"Link\" tab, and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml`                           |\n| <img src=\"/img/insomnia-logo.png\" width=\"32\"></img> Insomnia | From Insomnia preferences, locate the \"Import data\" option, choose \"From URL\", and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml` |\n\nContact Support:\n Name: Ship24",
+      "type": "text/plain"
+    }
+  }
+}

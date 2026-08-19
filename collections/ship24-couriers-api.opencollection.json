@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans 🚚 Couriers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "🚚 Couriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all couriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ship24.com/public/v1/couriers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer your_api_key"
+              }
+            ]
+          },
+          "docs": "This endpoint will return the list of all couriers supported by Ship24, identified by their `courierCode`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
