@@ -188,7 +188,7 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 common:
   - type: AgenticAccess
     url: agentic-access/ship24-agentic-access.yml
