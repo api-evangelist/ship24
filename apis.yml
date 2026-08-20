@@ -62,6 +62,8 @@ apis:
   humanURL: https://docs.ship24.com/
   baseURL: https://api.ship24.com
   tags:
+  - Couriers
+  tags_raw:
   - 🚚 Couriers
   properties:
   - type: OpenAPI
@@ -106,6 +108,8 @@ apis:
   humanURL: https://docs.ship24.com/
   baseURL: https://api.ship24.com
   tags:
+  - Trackers
+  tags_raw:
   - 📦 Trackers
   properties:
   - type: OpenAPI
@@ -146,6 +150,15 @@ apis:
     url: finops/ship24-finops.yml
 name: Ship24
 tags:
+  - Tracking
+  - Logistics
+  - Shipping
+  - Couriers
+  - Parcels
+  - Webhook
+  - E-Commerce
+  - Post-Purchase
+tags_raw:
   - Tracking
   - Logistics
   - Shipping
