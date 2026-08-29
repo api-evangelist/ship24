@@ -148,6 +148,16 @@ apis:
     url: rate-limits/ship24-rate-limits.yml
   - type: FinOps
     url: finops/ship24-finops.yml
+- aid: ship24:ship24-ship24-tracking-api-api
+  name: Ship24 Ship24 Tracking API
+  description: The Ship24 Tracking API API from Ship24 — 0 operation(s) for ship24 tracking api.
+  humanURL: https://docs.ship24.com/
+  baseURL: https://api.ship24.com
+  tags:
+  - Ship24 Tracking API
+  properties:
+  - type: OpenAPI
+    url: openapi/ship24-ship24-tracking-api-api-openapi.yml
 name: Ship24
 tags:
   - Tracking

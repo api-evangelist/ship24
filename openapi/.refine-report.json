@@ -1,18 +1,26 @@
 {
   "provider": "ship24",
   "sources": [
-    "ship24-api-for-per-call-plans-api-openapi.yml",
-    "ship24-couriers-api-openapi.yml",
-    "ship24-trackers-api-openapi.yml"
+    "_original/ship24-tracking-api-openapi.yml"
   ],
   "outputs": [
+    "ship24-ship24-tracking-api-api-openapi.yml",
     "ship24-api-for-per-call-plans-api-openapi.yml",
-    "ship24-couriers-api-openapi.yml",
-    "ship24-trackers-api-openapi.yml"
+    "ship24-trackers-api-openapi.yml",
+    "ship24-couriers-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ship24-tracking-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ship24-tracking-api-openapi.yml: tagged webhooks POST /your-endpoint -> Ship24 Tracking API",
+    "ship24-tracking-api-openapi.yml: declared missing tag: Ship24 Tracking API"
+  ],
+  "skipped": [
+    "ship24-api-for-per-call-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ship24-couriers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ship24-trackers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
