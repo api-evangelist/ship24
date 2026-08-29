@@ -225,6 +225,9 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/ship24-capability-edges.yml
+    name: Ship24 Business Capability Map
   - type: AgenticAccess
     url: agentic-access/ship24-agentic-access.yml
   - type: DomainSecurity

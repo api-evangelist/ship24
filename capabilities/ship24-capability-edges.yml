@@ -1,0 +1,36 @@
+slug: ship24
+provider: Ship24
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: 📦 Trackers
+  spec_file: ship24-trackers-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.9
+  evidence: POST /public/v1/trackers  create-tracker  Create a tracker; GET /public/v1/trackers/{trackerId}/results  Get
+    tracking results for an existing tracker
+  reason: Trackers are subscriptions to a parcel's status across 1,500+ couriers; operations create trackers
+    and return tracking results (shipment, event schemas), which is shipment tracking / status resolution
+    and delivery to customer-facing tracking.
+- tag: ➕ API for per-call plans
+  spec_file: ship24-api-for-per-call-plans-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.82
+  evidence: POST /public/v1/tracking/search  get-tracking  Get tracking results by tracking number
+  reason: Tag name refers to a pricing/plan variant of the endpoint, but the single operation resolves
+    shipment status from a tracking number, with schemas 'shipment' and 'event' — this is shipment tracking
+    on a tracking aggregator, i.e. shipment status resolution across carriers.
