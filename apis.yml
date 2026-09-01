@@ -62,7 +62,7 @@ apis:
   humanURL: https://docs.ship24.com/
   baseURL: https://api.ship24.com
   tags:
-  - 🚚 Couriers
+  - Couriers
   tags_raw:
   - 🚚 Couriers
   properties:
@@ -108,7 +108,7 @@ apis:
   humanURL: https://docs.ship24.com/
   baseURL: https://api.ship24.com
   tags:
-  - 📦 Trackers
+  - Trackers
   tags_raw:
   - 📦 Trackers
   properties:
@@ -167,7 +167,7 @@ tags:
   - Parcels
   - Webhook
   - E-Commerce
-  - PostPurchase
+  - Post-Purchase
 tags_raw:
   - Tracking
   - Logistics
