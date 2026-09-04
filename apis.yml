@@ -192,21 +192,22 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ship24.png
 access: 3rd-Party
 created: '2026-05-25'
 modified: '2026-05-25'
-position: Consumer
+position: Consuming
 description: >-
   Ship24 is a universal shipment tracking platform that consolidates 1,500+ couriers and marketplaces into a single API,
   dashboard, and post-purchase customer experience. It is operated as an enterprise tracking aggregator with reported
