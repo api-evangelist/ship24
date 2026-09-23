@@ -4,37 +4,7 @@ info:
   description: '## Getting started
 
 
-    Make sure to read the [Getting started](https://docs.ship24.com/getting-started) section of our [API Documentation](https://docs.ship24.com/) before using the endpoints presented below.
-
-    ## Documentation structure
-
-
-    Use the top navigation bar to switch from:
-
-
-    - Our [API Documentation](https://docs.ship24.com/), which contains a comprehensive explanation of how our API works.
-
-    - Our [API Reference](https://docs.ship24.com/tracking-api-reference/), which contains the specification of each of our endpoints.
-
-    - Our [Support](https://docs.ship24.com/support/introduction) section, which contains help articles for most of the common questions and issues you may encounter.
-
-
-    ## Import our documentation into your HTTP client
-
-
-    Our API Reference is available as an Open API 3.1 format file, which is supported by most HTTP clients.
-
-
-    - Latest version: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
-
-
-    | <!-- -->                                                     | <!-- -->                                                                                                                                                     |
-
-    | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-
-    | ![Postman](/img/postman-logo.svg) Postman                    | In Postman, click on "Import", go on the "Link" tab, and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml`                           |
-
-    | <img src="/img/insomnia-logo.png" width="32"></img> Insomnia | From Insomnia preferences, locate the "Import data" option, choose "From URL", and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml` |'
+    Make sure to read the Getting started section of our API Documentation before using the endpoints presented below.'
   version: 1.0.0
   contact:
     name: Ship24
@@ -42,13 +12,13 @@ info:
 servers:
 - url: https://api.ship24.com
 tags:
-- name: 📦 Trackers
+- name: Trackers
 paths:
   /public/v1/trackers:
     parameters: []
     post:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Create a tracker
       description: 'This endpoint allows you to create a new `Tracker`, based on the specified information. Once a `Tracker` is created, you will be able to receive webhook notifications and/or fetch its tracking result.
 
@@ -132,7 +102,7 @@ paths:
                     data: null
     get:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: List existing Trackers
       description: This endpoint return a list of all existing `Trackers`, using page-based pagination.
       parameters:
@@ -295,7 +265,7 @@ paths:
   /public/v1/trackers/bulk:
     post:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Bulk create trackers
       description: 'This endpoint allows you to create up to 100 new `Trackers` in a single operation, based on the specified information. Once the `Trackers` are created, you will be able to receive webhook notifications and/or fetch their tracking results.
 
@@ -405,10 +375,9 @@ paths:
   /public/v1/trackers/track:
     post:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Create a tracker and get tracking results
       description: 'This endpoint creates a new `Tracker` on the specified tracking number , if it does not exist, and returns the tracking results directly. We advise using this endpoint if you are not interested in receiving webhook notifications and just want to fetch tracking results. This way, you can always call this unified endpoint to get tracking results, without worrying about `Tracker` creation and management.
-
 
 
         > 🛑 During the very first call for a tracking number, this endpoint will create a `Tracker` and try to return tracking results synchronously if the courier allows it, which can delay the initial answer, at the benefit of getting the tracking results from the first call. **Initial response time may range from a few seconds, up to 1 minute, and results will depend on the courier''s system availability at that time.** Subsequent calls will be instantaneous as the `Tracker` will already exist with tracking results ready to use and constantly updated.
@@ -485,7 +454,7 @@ paths:
   /public/v1/trackers/{trackerId}:
     get:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Get an existing tracker
       description: This endpoint return an existing `Tracker` for a given `trackerId`.
       parameters:
@@ -547,9 +516,20 @@ paths:
       operationId: get-tracker-by-trackerId
     patch:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Update an existing tracker
-      description: "This endpoint allows to modify an existing `Tracker` matching with the given `trackerId`.  \n\n> Once the Tracker has gathered shipment tracking information, certain fields related to the shipment data cannot be modified. These include: \n> - `courierCode` \n> - `originCountryCode` \n> - `destinationCountryCode` \n> - `shippingDate`"
+      description: 'This endpoint allows to modify an existing `Tracker` matching with the given `trackerId`.
+
+
+        > Once the Tracker has gathered shipment tracking information, certain fields related to the shipment data cannot be modified. These include:
+
+        > - `courierCode`
+
+        > - `originCountryCode`
+
+        > - `destinationCountryCode`
+
+        > - `shippingDate`'
       requestBody:
         content:
           application/json:
@@ -670,9 +650,15 @@ paths:
   /public/v1/trackers/search/{trackingNumber}/results:
     get:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Get tracking results for existing trackers by tracking number
-      description: "This endpoint will return the `tracking` result corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section. \n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`."
+      description: 'This endpoint will return the `tracking` result corresponding to the tracking number provided as a parameter.
+
+
+        The `tracking` object is detailed in the SCHEMAS section.
+
+
+        Unlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`.'
       parameters:
       - name: Authorization
         in: header
@@ -721,9 +707,15 @@ paths:
   /public/v1/trackers/{trackerId}/results:
     get:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Get tracking results for an existing tracker
-      description: "This endpoint return the `Tracking` results of an existing `Tracker` matching with the given trackerId. As trackerId are unique, the `Trackings` array will always have only one item. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nUnlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`."
+      description: 'This endpoint return the `Tracking` results of an existing `Tracker` matching with the given trackerId. As trackerId are unique, the `Trackings` array will always have only one item.
+
+
+        The `tracking` object is detailed in the SCHEMAS section.
+
+
+        Unlike the `/v1/trackers/track` endpoint, a **`Tracker`** **must first be created on this tracking number before using this endpoint.** As a tracking number is not unique, the endpoint may return multiple `trackings` associated with different `Trackers`.'
       parameters:
       - name: Authorization
         in: header
@@ -794,9 +786,12 @@ paths:
   /public/v1/trackers/{trackerId}/webhook-events/resend:
     post:
       tags:
-      - 📦 Trackers
+      - Trackers
       summary: Resend webhooks of an existing tracker
-      description: "This endpoint allows to resend all webhook messages of an existing tracker. \n\nThis can be useful in case you missed some webhook messages or if you need to reprocess them for any reason."
+      description: 'This endpoint allows to resend all webhook messages of an existing tracker.
+
+
+        This can be useful in case you missed some webhook messages or if you need to reprocess them for any reason.'
       parameters:
       - name: Authorization
         in: header
@@ -1134,251 +1129,6 @@ components:
                 exceptionDatetime: null
                 deliveredDatetime: '2021-03-04T17:12:57'
   schemas:
-    bulk-create-trackers-request:
-      title: Bulk create trackers request
-      x-internal: true
-      type: array
-      items:
-        $ref: '#/components/schemas/tracker-create-request'
-      required: true
-    tracker:
-      type: object
-      x-internal: true
-      title: Tracker
-      properties:
-        trackerId:
-          type: string
-          description: The id of the tracker that is providing this tracking.
-          example: 26148317-7502-d3ac-44a9-546d240ac0dd
-        trackingNumber:
-          type: string
-          description: The tracking number which the tracker is following.
-          example: '9400115901047177598206'
-        shipmentReference:
-          type:
-          - string
-          - 'null'
-          description: The `shipmentReference` you provided at the tracker's creation.
-          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
-        courierCode:
-          type:
-          - array
-          - string
-          description: Code of the courier(s) handling the shipment.
-          example:
-          - us-post
-          minItems: 0
-          maxItems: 3
-          items:
-            type: string
-        clientTrackerId:
-          type:
-          - string
-          - 'null'
-          description: The `clientTrackerId` you provided at the tracker's creation.
-          example: 3fa99515-3ca0-4901-85bb-056ee016799b
-        isSubscribed:
-          type: boolean
-          description: Indicates whether the tracker is active. A value of `false` means the tracker is archived and will not be used for tracking.
-          example: true
-        isTracked:
-          type: boolean
-          description: Indicates whether we are actively tracking the parcel. A value of `true` means new data is being searched for, while `false` indicates tracking has stopped due to delivery, inactivity, or unsubscription. Existing tracking results will remain accessible; however, new data will not be fetched, and notifications will no longer be sent.
-          example: true
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time at which the tracker was created.
-          example: '2021-03-10T05:13:00.000Z'
-      required:
-      - trackerId
-      - trackingNumber
-      - shipmentReference
-      - clientTrackerId
-      - isSubscribed
-      - isTracked
-      - createdAt
-    tracker-create-request:
-      title: Tracker creation payload
-      type: object
-      x-internal: true
-      properties:
-        trackingNumber:
-          type: string
-          minLength: 5
-          maxLength: 50
-          example: '9400115901047177598206'
-          pattern: ^[a-zA-Z0-9-_/.]*$
-          description: Tracking number of the shipment.
-        shipmentReference:
-          type: string
-          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
-          description: Your reference for this shipment. Will be provided in our webhooks or API responses for this tracker.
-        clientTrackerId:
-          type: string
-          example: 3fa99515-3ca0-4901-85bb-056ee016799b
-          description: Your unique identifier for this shipment. Will be provided in our webhooks or API responses for this tracker.
-        originCountryCode:
-          type: string
-          example: CN
-          description: Sender country code.
-          format: ISO 3166-1 alpha-2/alpha-3
-        destinationCountryCode:
-          type: string
-          example: US
-          description: Recipient country code - 📌 Recommended to improve tracking accuracy
-          format: ISO 3166-1 alpha-2/alpha-3
-        destinationPostCode:
-          type: string
-          example: '94901'
-          description: Recipient Post code (or ZIP code)  - 📌 Recommended to improve tracking accuracy
-        shippingDate:
-          type: string
-          format: date-time
-          examples:
-          - '2021-03-01T11:09:00.000Z'
-          - '2021-03-01'
-          - '2021-03-01T11:09:00'
-          - '2021-03-01T11:09:00+02:00'
-          description: 'Date at which the shipment has been shipped  - 📌 Recommended to improve tracking accuracy: providing the shipping date helps us accurately identify the shipment and improves our ability to retrieve the correct data. However, an inaccurate shipping date could cause our system to exclude the right shipment. Therefore, please ensure the provided shipping date aligns closely with the actual shipment date, give or take a few days. [Format](http://docs.ship24.com/data-format#logistics-date-and-time)'
-        courierCode:
-          type:
-          - array
-          - string
-          description: Code of the courier(s) handling the shipment (Up to 3 max) (see Couriers list section)  - 📌 Recommended to improve tracking accuracy
-          example:
-          - us-post
-          minItems: 0
-          maxItems: 3
-          items:
-            type: string
-        courierName:
-          type: string
-          description: Courier name and/or service.
-          example: USPS Standard
-        trackingUrl:
-          type: string
-          description: Tracking URL of the courier.
-          example: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206
-        orderNumber:
-          type: string
-          description: Order number in case of an eCommerce order.
-          example: DF14R2022
-        title:
-          type: string
-          example: Nike shoes for Marc
-          description: Title for this shipment, visible on the Tracking Dashboard.
-        recipient:
-          type: object
-          properties:
-            email:
-              type: string
-              example: recipient@email.com
-              description: Recipient email, used for optional email notifications.
-              format: email
-            name:
-              type: string
-              example: Marc
-              description: Recipient name, used for optional email notifications.
-        settings:
-          type: object
-          properties:
-            restrictTrackingToCourierCode:
-              type: boolean
-              example: true
-              description: If set to `true`, the tracker will only track the courier(s) specified in the `courierCode` field, if any. Otherwise, Ship24 may extend the tracking to other providers in case the shipment is handled by additional couriers.
-      required:
-      - trackingNumber
-    bulk-create-trackers-response:
-      title: Bulk create trackers response
-      type: object
-      x-internal: true
-      properties:
-        status:
-          description: 'Status of the bulk creation.
-
-
-            `success`: All trackers were created successfully or already existed. (Status code 200)
-
-
-            `partial`: Operation contains both successes and errors. (Status code 207)
-
-
-            `error`: All creations failed or error on request level. (Status codes 400, 403)'
-          type: string
-          enum:
-          - success
-          - partial
-          - error
-        summary:
-          description: Summary of the bulk creation. Null if status is `error`.
-          type: object
-          nullable: true
-          properties:
-            totalInputs:
-              description: Total number of trackers to create.
-              type: integer
-            totalCreated:
-              description: Total number of trackers created.
-              type: integer
-            totalExisting:
-              description: Total number of already existing trackers.
-              type: integer
-            totalErrors:
-              description: Total number of errors (failed creations).
-              type: integer
-        data:
-          description: Detailed information about each tracker creation. Null if status is `error`.
-          type: array
-          nullable: true
-          items:
-            type: object
-            properties:
-              itemStatus:
-                description: Status of the tracker creation.
-                type: string
-                enum:
-                - created
-                - existing
-                - error
-              inputData:
-                description: Payload used to create the tracker.
-                $ref: '#/components/schemas/tracker-create-request'
-              tracker:
-                description: Tracker object. Null if `status` is `error`.
-                $ref: '#/components/schemas/tracker'
-                nullable: true
-              errors:
-                description: '[Error details](https://docs.ship24.com/errors#error-response-format) about a single tracker creation. Null if `itemStatus` is not `error`.'
-                type: array
-                nullable: true
-                items:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-                    message:
-                      type: string
-                  required:
-                  - code
-                  - message
-            required:
-            - itemStatus
-            - inputData
-        error:
-          description: '[Error details](https://docs.ship24.com/errors#error-response-format) of the request. Null if `status` is not `error`.'
-          type: object
-          nullable: true
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-          required:
-          - code
-          - message
-      required:
-      - status
     shipment:
       type: object
       x-internal: true
@@ -1505,87 +1255,6 @@ components:
               type:
               - string
               - 'null'
-    statistics:
-      type: object
-      x-internal: true
-      properties:
-        timestamps:
-          type: object
-          description: 'Date and time of the occurrence of each milestone of the shipment.
-
-
-            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
-
-
-            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
-          properties:
-            infoReceivedDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T15:38:57'
-            inTransitDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T19:24:57'
-            outForDeliveryDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T10:12:57'
-            failedAttemptDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            availableForPickupDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T15:26:00'
-            exceptionDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            deliveredDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-05T17:12:57'
-    error-response-format:
-      type: object
-      x-internal: true
-      title: Error response format
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-        data:
-          type:
-          - object
-          - 'null'
     event:
       type: object
       description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
@@ -1677,6 +1346,332 @@ components:
         hasNoTime:
           deprecated: true
           type: boolean
+    error-response-format:
+      type: object
+      x-internal: true
+      title: Error response format
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+        data:
+          type:
+          - object
+          - 'null'
+    tracker:
+      type: object
+      x-internal: true
+      title: Tracker
+      properties:
+        trackerId:
+          type: string
+          description: The id of the tracker that is providing this tracking.
+          example: 26148317-7502-d3ac-44a9-546d240ac0dd
+        trackingNumber:
+          type: string
+          description: The tracking number which the tracker is following.
+          example: '9400115901047177598206'
+        shipmentReference:
+          type:
+          - string
+          - 'null'
+          description: The `shipmentReference` you provided at the tracker's creation.
+          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
+        courierCode:
+          type:
+          - array
+          - string
+          description: Code of the courier(s) handling the shipment.
+          example:
+          - us-post
+          minItems: 0
+          maxItems: 3
+          items:
+            type: string
+        clientTrackerId:
+          type:
+          - string
+          - 'null'
+          description: The `clientTrackerId` you provided at the tracker's creation.
+          example: 3fa99515-3ca0-4901-85bb-056ee016799b
+        isSubscribed:
+          type: boolean
+          description: Indicates whether the tracker is active. A value of `false` means the tracker is archived and will not be used for tracking.
+          example: true
+        isTracked:
+          type: boolean
+          description: Indicates whether we are actively tracking the parcel. A value of `true` means new data is being searched for, while `false` indicates tracking has stopped due to delivery, inactivity, or unsubscription. Existing tracking results will remain accessible; however, new data will not be fetched, and notifications will no longer be sent.
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time at which the tracker was created.
+          example: '2021-03-10T05:13:00.000Z'
+      required:
+      - trackerId
+      - trackingNumber
+      - shipmentReference
+      - clientTrackerId
+      - isSubscribed
+      - isTracked
+      - createdAt
+    statistics:
+      type: object
+      x-internal: true
+      properties:
+        timestamps:
+          type: object
+          description: 'Date and time of the occurrence of each milestone of the shipment.
+
+
+            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
+
+
+            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
+          properties:
+            infoReceivedDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T15:38:57'
+            inTransitDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T19:24:57'
+            outForDeliveryDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T10:12:57'
+            failedAttemptDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            availableForPickupDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T15:26:00'
+            exceptionDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            deliveredDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-05T17:12:57'
+    bulk-create-trackers-request:
+      title: Bulk create trackers request
+      x-internal: true
+      type: array
+      items:
+        $ref: '#/components/schemas/tracker-create-request'
+      required: true
+    bulk-create-trackers-response:
+      title: Bulk create trackers response
+      type: object
+      x-internal: true
+      properties:
+        status:
+          description: 'Status of the bulk creation.
+
+
+            `success`: All trackers were created successfully or already existed. (Status code 200)
+
+
+            `partial`: Operation contains both successes and errors. (Status code 207)
+
+
+            `error`: All creations failed or error on request level. (Status codes 400, 403)'
+          type: string
+          enum:
+          - success
+          - partial
+          - error
+        summary:
+          description: Summary of the bulk creation. Null if status is `error`.
+          type: object
+          nullable: true
+          properties:
+            totalInputs:
+              description: Total number of trackers to create.
+              type: integer
+            totalCreated:
+              description: Total number of trackers created.
+              type: integer
+            totalExisting:
+              description: Total number of already existing trackers.
+              type: integer
+            totalErrors:
+              description: Total number of errors (failed creations).
+              type: integer
+        data:
+          description: Detailed information about each tracker creation. Null if status is `error`.
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              itemStatus:
+                description: Status of the tracker creation.
+                type: string
+                enum:
+                - created
+                - existing
+                - error
+              inputData:
+                description: Payload used to create the tracker.
+                $ref: '#/components/schemas/tracker-create-request'
+              tracker:
+                description: Tracker object. Null if `status` is `error`.
+                $ref: '#/components/schemas/tracker'
+                nullable: true
+              errors:
+                description: '[Error details](https://docs.ship24.com/errors#error-response-format) about a single tracker creation. Null if `itemStatus` is not `error`.'
+                type: array
+                nullable: true
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                  required:
+                  - code
+                  - message
+            required:
+            - itemStatus
+            - inputData
+        error:
+          description: '[Error details](https://docs.ship24.com/errors#error-response-format) of the request. Null if `status` is not `error`.'
+          type: object
+          nullable: true
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+          required:
+          - code
+          - message
+      required:
+      - status
+    tracker-create-request:
+      title: Tracker creation payload
+      type: object
+      x-internal: true
+      properties:
+        trackingNumber:
+          type: string
+          minLength: 5
+          maxLength: 50
+          example: '9400115901047177598206'
+          pattern: ^[a-zA-Z0-9-_/.]*$
+          description: Tracking number of the shipment.
+        shipmentReference:
+          type: string
+          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
+          description: Your reference for this shipment. Will be provided in our webhooks or API responses for this tracker.
+        clientTrackerId:
+          type: string
+          example: 3fa99515-3ca0-4901-85bb-056ee016799b
+          description: Your unique identifier for this shipment. Will be provided in our webhooks or API responses for this tracker.
+        originCountryCode:
+          type: string
+          example: CN
+          description: Sender country code.
+          format: ISO 3166-1 alpha-2/alpha-3
+        destinationCountryCode:
+          type: string
+          example: US
+          description: Recipient country code - 📌 Recommended to improve tracking accuracy
+          format: ISO 3166-1 alpha-2/alpha-3
+        destinationPostCode:
+          type: string
+          example: '94901'
+          description: Recipient Post code (or ZIP code)  - 📌 Recommended to improve tracking accuracy
+        shippingDate:
+          type: string
+          format: date-time
+          examples:
+          - '2021-03-01T11:09:00.000Z'
+          - '2021-03-01'
+          - '2021-03-01T11:09:00'
+          - '2021-03-01T11:09:00+02:00'
+          description: 'Date at which the shipment has been shipped  - 📌 Recommended to improve tracking accuracy: providing the shipping date helps us accurately identify the shipment and improves our ability to retrieve the correct data. However, an inaccurate shipping date could cause our system to exclude the right shipment. Therefore, please ensure the provided shipping date aligns closely with the actual shipment date, give or take a few days. [Format](http://docs.ship24.com/data-format#logistics-date-and-time)'
+        courierCode:
+          type:
+          - array
+          - string
+          description: Code of the courier(s) handling the shipment (Up to 3 max) (see Couriers list section)  - 📌 Recommended to improve tracking accuracy
+          example:
+          - us-post
+          minItems: 0
+          maxItems: 3
+          items:
+            type: string
+        courierName:
+          type: string
+          description: Courier name and/or service.
+          example: USPS Standard
+        trackingUrl:
+          type: string
+          description: Tracking URL of the courier.
+          example: https://tools.usps.com/go/TrackConfirmAction?tLabels=9400115901047177598206
+        orderNumber:
+          type: string
+          description: Order number in case of an eCommerce order.
+          example: DF14R2022
+        title:
+          type: string
+          example: Nike shoes for Marc
+          description: Title for this shipment, visible on the Tracking Dashboard.
+        recipient:
+          type: object
+          properties:
+            email:
+              type: string
+              example: recipient@email.com
+              description: Recipient email, used for optional email notifications.
+              format: email
+            name:
+              type: string
+              example: Marc
+              description: Recipient name, used for optional email notifications.
+        settings:
+          type: object
+          properties:
+            restrictTrackingToCourierCode:
+              type: boolean
+              example: true
+              description: If set to `true`, the tracker will only track the courier(s) specified in the `courierCode` field, if any. Otherwise, Ship24 may extend the tracking to other providers in case the shipment is handled by additional couriers.
+      required:
+      - trackingNumber
   securitySchemes:
     Authorization:
       name: Bearer your_api_key

@@ -4,37 +4,7 @@ info:
   description: '## Getting started
 
 
-    Make sure to read the [Getting started](https://docs.ship24.com/getting-started) section of our [API Documentation](https://docs.ship24.com/) before using the endpoints presented below.
-
-    ## Documentation structure
-
-
-    Use the top navigation bar to switch from:
-
-
-    - Our [API Documentation](https://docs.ship24.com/), which contains a comprehensive explanation of how our API works.
-
-    - Our [API Reference](https://docs.ship24.com/tracking-api-reference/), which contains the specification of each of our endpoints.
-
-    - Our [Support](https://docs.ship24.com/support/introduction) section, which contains help articles for most of the common questions and issues you may encounter.
-
-
-    ## Import our documentation into your HTTP client
-
-
-    Our API Reference is available as an Open API 3.1 format file, which is supported by most HTTP clients.
-
-
-    - Latest version: https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml
-
-
-    | <!-- -->                                                     | <!-- -->                                                                                                                                                     |
-
-    | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-
-    | ![Postman](/img/postman-logo.svg) Postman                    | In Postman, click on "Import", go on the "Link" tab, and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml`                           |
-
-    | <img src="/img/insomnia-logo.png" width="32"></img> Insomnia | From Insomnia preferences, locate the "Import data" option, choose "From URL", and paste this URL `https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml` |'
+    Make sure to read the Getting started section of our API Documentation before using the endpoints presented below.'
   version: 1.0.0
   contact:
     name: Ship24
@@ -43,20 +13,26 @@ servers:
 - url: https://api.ship24.com
 tags:
 - name: ➕ API for per-call plans
-  description: 'The **Tracking API (Per-call Plans)** is a specific product and associated endpoint on which usage is measured per API Call made. Each API call is synchronously fetching data from couriers which make it slower and more depend on courier''s system availability.
-
-
-    Our standard "Per-shipment" product & plans remain the best choice as it offers more features, allow faster tracking information fetching with less dependency on courier''s system availability at a lower cost overall.
-
-
-    > ⚠ You need an active "Per-call" subscription to use this endpoint.'
+  description: The **Tracking API (Per-call Plans)** is a specific product and associated endpoint on which usage is measured per API Call made.
 paths:
   /public/v1/tracking/search:
     post:
       tags:
       - ➕ API for per-call plans
       summary: Get tracking results by tracking number
-      description: "This endpoint will return the `tracking` corresponding to the tracking number provided as a parameter. \n\nThe `tracking` object is detailed in the [SCHEMAS](/schemas/tracking) section.\n\nFor better accuracy, we strongly advise to provide extra information such as the origin country, destination postcode & country, and the shipping date.\n\n> \U0001F6D1 You need an active \"Per-call\" subscription to use this endpoint. Our standard \"Per-shipment\" product & plans remain the best choice as it offers more features, allow faster tracking information fetching with less dependency on courier's system availability at a lower cost overall.\n\n\n> \U0001F6D1 As this endpoint is synchronously fetching tracking results from couriers, **response time may be up to 1 minute, and results depend on the courier's system availability** at the time of the call."
+      description: 'This endpoint will return the `tracking` corresponding to the tracking number provided as a parameter.
+
+
+        The `tracking` object is detailed in the SCHEMAS section.
+
+
+        For better accuracy, we strongly advise to provide extra information such as the origin country, destination postcode & country, and the shipping date.
+
+
+        > 🛑 You need an active "Per-call" subscription to use this endpoint. Our standard "Per-shipment" product & plans remain the best choice as it offers more features, allow faster tracking information fetching with less dependency on courier''s system availability at a lower cost overall.
+
+
+        > 🛑 As this endpoint is synchronously fetching tracking results from couriers, **response time may be up to 1 minute, and results depend on the courier''s system availability** at the time of the call.'
       requestBody:
         content:
           application/json:
@@ -295,87 +271,6 @@ paths:
       operationId: get-tracking
 components:
   schemas:
-    error-response-format:
-      type: object
-      x-internal: true
-      title: Error response format
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-        data:
-          type:
-          - object
-          - 'null'
-    statistics:
-      type: object
-      x-internal: true
-      properties:
-        timestamps:
-          type: object
-          description: 'Date and time of the occurrence of each milestone of the shipment.
-
-
-            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
-
-
-            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
-          properties:
-            infoReceivedDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T15:38:57'
-            inTransitDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T19:24:57'
-            outForDeliveryDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T10:12:57'
-            failedAttemptDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            availableForPickupDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T15:26:00'
-            exceptionDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            deliveredDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-05T17:12:57'
     shipment:
       type: object
       x-internal: true
@@ -502,6 +397,69 @@ components:
               type:
               - string
               - 'null'
+    statistics:
+      type: object
+      x-internal: true
+      properties:
+        timestamps:
+          type: object
+          description: 'Date and time of the occurrence of each milestone of the shipment.
+
+
+            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
+
+
+            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
+          properties:
+            infoReceivedDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T15:38:57'
+            inTransitDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T19:24:57'
+            outForDeliveryDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T10:12:57'
+            failedAttemptDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            availableForPickupDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T15:26:00'
+            exceptionDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            deliveredDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-05T17:12:57'
     event:
       type: object
       description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
@@ -593,6 +551,24 @@ components:
         hasNoTime:
           deprecated: true
           type: boolean
+    error-response-format:
+      type: object
+      x-internal: true
+      title: Error response format
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+        data:
+          type:
+          - object
+          - 'null'
   securitySchemes:
     Authorization:
       name: Bearer your_api_key
