@@ -123,6 +123,97 @@ webhooks:
       - Ship24 Tracking API
 components:
   schemas:
+    event:
+      type: object
+      description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
+      x-internal: true
+      properties:
+        eventId:
+          type: string
+          description: Unique identifier of the event in Ship24 system.
+          example: c6fbe883-49dc-7cba-48c4-46c6efd29db6
+        trackingNumber:
+          type: string
+          description: The original tracking number used to create the Tracker.
+          example: '9400111202544843610364'
+        eventTrackingNumber:
+          type: string
+          description: The tracking number associated with the event, on which the event has been found.
+          example: '9400111202544843610364'
+        status:
+          type: string
+          nullable: true
+          description: Event raw text.
+          example: Delivered to the addressee
+        occurrenceDatetime:
+          type: string
+          format: logistic-date-time
+          description: '[Date and time](http://docs.ship24.com/data-format#logistics-date-and-time) at which the event occurred.'
+          examples:
+          - '2021-03-04T17:12:57'
+          - '2021-03-04T10:12:57.000Z'
+          - '2021-03-04T10:12:57+02:00'
+          - '2021-03-04'
+        order:
+          type:
+          - integer
+          - 'null'
+          nullable: true
+          description: Indicate the order of the events in case the occurrenceDatetime is the same between multiple events (lower is older).
+          example: 1
+        location:
+          type:
+          - string
+          - 'null'
+          nullable: true
+          description: Location raw text of the event.
+          example: SAN RAFAEL, CA 94901
+        sourceCode:
+          type:
+          - string
+          - 'null'
+          nullable: true
+          description: Internal code of the source used to get this event. Please note that those codes may evolve at any point in time.
+          example: usps-tracking
+        courierCode:
+          type:
+          - string
+          - 'null'
+          nullable: true
+          description: Code of the courier linked to this event, refers to our Couriers list. Please note that those codes may evolve at any point in time.
+          example: us-post
+        statusCode:
+          type:
+          - string
+          - 'null'
+          nullable: true
+          description: '[statusCode](https://docs.ship24.com/status/#statuscode-and-statuscategory) of the event.
+
+            '
+          example: delivery_delivered
+        statusCategory:
+          type:
+          - string
+          - 'null'
+          nullable: true
+          example: delivery
+          description: '[statusCategory](https://docs.ship24.com/status/#statuscode-and-statuscategory) of the event.
+
+            '
+        statusMilestone:
+          type: string
+          example: delivered
+          description: '[statusMilestone](https://docs.ship24.com/status/#statusmilestone) of the shipment at the time of the event.'
+        datetime:
+          deprecated: true
+          type: string
+          format: date-time
+        utcOffset:
+          deprecated: true
+          type: string
+        hasNoTime:
+          deprecated: true
+          type: boolean
     shipment:
       type: object
       x-internal: true
@@ -249,97 +340,24 @@ components:
               type:
               - string
               - 'null'
-    event:
+    metadata:
       type: object
-      description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
       x-internal: true
+      title: metadata
       properties:
-        eventId:
-          type: string
-          description: Unique identifier of the event in Ship24 system.
-          example: c6fbe883-49dc-7cba-48c4-46c6efd29db6
-        trackingNumber:
-          type: string
-          description: The original tracking number used to create the Tracker.
-          example: '9400111202544843610364'
-        eventTrackingNumber:
-          type: string
-          description: The tracking number associated with the event, on which the event has been found.
-          example: '9400111202544843610364'
-        status:
-          type: string
-          nullable: true
-          description: Event raw text.
-          example: Delivered to the addressee
-        occurrenceDatetime:
-          type: string
-          format: logistic-date-time
-          description: '[Date and time](http://docs.ship24.com/data-format#logistics-date-and-time) at which the event occurred.'
-          examples:
-          - '2021-03-04T17:12:57'
-          - '2021-03-04T10:12:57.000Z'
-          - '2021-03-04T10:12:57+02:00'
-          - '2021-03-04'
-        order:
-          type:
-          - integer
-          - 'null'
-          nullable: true
-          description: Indicate the order of the events in case the occurrenceDatetime is the same between multiple events (lower is older).
-          example: 1
-        location:
-          type:
-          - string
-          - 'null'
-          nullable: true
-          description: Location raw text of the event.
-          example: SAN RAFAEL, CA 94901
-        sourceCode:
-          type:
-          - string
-          - 'null'
-          nullable: true
-          description: Internal code of the source used to get this event. Please note that those codes may evolve at any point in time.
-          example: usps-tracking
-        courierCode:
-          type:
-          - string
-          - 'null'
-          nullable: true
-          description: Code of the courier linked to this event, refers to our Couriers list. Please note that those codes may evolve at any point in time.
-          example: us-post
-        statusCode:
-          type:
-          - string
-          - 'null'
-          nullable: true
-          description: '[statusCode](https://docs.ship24.com/status/#statuscode-and-statuscategory) of the event.
-
-            '
-          example: delivery_delivered
-        statusCategory:
-          type:
-          - string
-          - 'null'
-          nullable: true
-          example: delivery
-          description: '[statusCategory](https://docs.ship24.com/status/#statuscode-and-statuscategory) of the event.
-
-            '
-        statusMilestone:
-          type: string
-          example: delivered
-          description: '[statusMilestone](https://docs.ship24.com/status/#statusmilestone) of the shipment at the time of the event.'
-        datetime:
-          deprecated: true
+        generatedAt:
           type: string
           format: date-time
-        utcOffset:
-          deprecated: true
+          example: '2022-12-15T15:42:00.000Z'
+          description: Date at which the webhook data was generated.
+        messageId:
           type: string
-        hasNoTime:
-          deprecated: true
-          type: boolean
+          example: 356a7f93-3ce5-4b49-b560-156537283df9
+          description: Unique identifier of the tracking object across webhooks.
+        topic:
+          type: string
+          example: tracking/events
+          description: Topic of the webhook, which can be used to filter webhooks by topic.
     tracker:
       type: object
       x-internal: true
@@ -397,24 +415,6 @@ components:
       - isSubscribed
       - isTracked
       - createdAt
-    metadata:
-      type: object
-      x-internal: true
-      title: metadata
-      properties:
-        generatedAt:
-          type: string
-          format: date-time
-          example: '2022-12-15T15:42:00.000Z'
-          description: Date at which the webhook data was generated.
-        messageId:
-          type: string
-          example: 356a7f93-3ce5-4b49-b560-156537283df9
-          description: Unique identifier of the tracking object across webhooks.
-        topic:
-          type: string
-          example: tracking/events
-          description: Topic of the webhook, which can be used to filter webhooks by topic.
     statistics:
       type: object
       x-internal: true
