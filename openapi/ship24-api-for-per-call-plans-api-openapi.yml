@@ -397,6 +397,87 @@ components:
               type:
               - string
               - 'null'
+    error-response-format:
+      type: object
+      x-internal: true
+      title: Error response format
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+        data:
+          type:
+          - object
+          - 'null'
+    statistics:
+      type: object
+      x-internal: true
+      properties:
+        timestamps:
+          type: object
+          description: 'Date and time of the occurrence of each milestone of the shipment.
+
+
+            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
+
+
+            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
+          properties:
+            infoReceivedDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T15:38:57'
+            inTransitDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T19:24:57'
+            outForDeliveryDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T10:12:57'
+            failedAttemptDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            availableForPickupDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T15:26:00'
+            exceptionDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            deliveredDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-05T17:12:57'
     event:
       type: object
       description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
@@ -488,87 +569,6 @@ components:
         hasNoTime:
           deprecated: true
           type: boolean
-    error-response-format:
-      type: object
-      x-internal: true
-      title: Error response format
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-        data:
-          type:
-          - object
-          - 'null'
-    statistics:
-      type: object
-      x-internal: true
-      properties:
-        timestamps:
-          type: object
-          description: 'Date and time of the occurrence of each milestone of the shipment.
-
-
-            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
-
-
-            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
-          properties:
-            infoReceivedDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T15:38:57'
-            inTransitDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T19:24:57'
-            outForDeliveryDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T10:12:57'
-            failedAttemptDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            availableForPickupDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T15:26:00'
-            exceptionDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            deliveredDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-05T17:12:57'
   securitySchemes:
     Authorization:
       name: Bearer your_api_key

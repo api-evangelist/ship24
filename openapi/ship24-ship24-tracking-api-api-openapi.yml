@@ -123,6 +123,63 @@ webhooks:
       - Ship24 Tracking API
 components:
   schemas:
+    tracker:
+      type: object
+      x-internal: true
+      title: Tracker
+      properties:
+        trackerId:
+          type: string
+          description: The id of the tracker that is providing this tracking.
+          example: 26148317-7502-d3ac-44a9-546d240ac0dd
+        trackingNumber:
+          type: string
+          description: The tracking number which the tracker is following.
+          example: '9400115901047177598206'
+        shipmentReference:
+          type:
+          - string
+          - 'null'
+          description: The `shipmentReference` you provided at the tracker's creation.
+          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
+        courierCode:
+          type:
+          - array
+          - string
+          description: Code of the courier(s) handling the shipment.
+          example:
+          - us-post
+          minItems: 0
+          maxItems: 3
+          items:
+            type: string
+        clientTrackerId:
+          type:
+          - string
+          - 'null'
+          description: The `clientTrackerId` you provided at the tracker's creation.
+          example: 3fa99515-3ca0-4901-85bb-056ee016799b
+        isSubscribed:
+          type: boolean
+          description: Indicates whether the tracker is active. A value of `false` means the tracker is archived and will not be used for tracking.
+          example: true
+        isTracked:
+          type: boolean
+          description: Indicates whether we are actively tracking the parcel. A value of `true` means new data is being searched for, while `false` indicates tracking has stopped due to delivery, inactivity, or unsubscription. Existing tracking results will remain accessible; however, new data will not be fetched, and notifications will no longer be sent.
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time at which the tracker was created.
+          example: '2021-03-10T05:13:00.000Z'
+      required:
+      - trackerId
+      - trackingNumber
+      - shipmentReference
+      - clientTrackerId
+      - isSubscribed
+      - isTracked
+      - createdAt
     event:
       type: object
       description: An event represents a tracking update for a shipment, such as 'In Transit', 'Out for Delivery', or 'Delivered'. Each event contains details about the status, location, time of the update, and more. The events object always contains one event at a time.
@@ -214,6 +271,87 @@ components:
         hasNoTime:
           deprecated: true
           type: boolean
+    statistics:
+      type: object
+      x-internal: true
+      properties:
+        timestamps:
+          type: object
+          description: 'Date and time of the occurrence of each milestone of the shipment.
+
+
+            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
+
+
+            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
+          properties:
+            infoReceivedDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T15:38:57'
+            inTransitDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-02T19:24:57'
+            outForDeliveryDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T10:12:57'
+            failedAttemptDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            availableForPickupDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T15:26:00'
+            exceptionDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-04T11:33:00'
+            deliveredDatetime:
+              type:
+              - string
+              - 'null'
+              format: logistic-date-time
+              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
+              example: '2021-03-05T17:12:57'
+    metadata:
+      type: object
+      x-internal: true
+      title: metadata
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+          example: '2022-12-15T15:42:00.000Z'
+          description: Date at which the webhook data was generated.
+        messageId:
+          type: string
+          example: 356a7f93-3ce5-4b49-b560-156537283df9
+          description: Unique identifier of the tracking object across webhooks.
+        topic:
+          type: string
+          example: tracking/events
+          description: Topic of the webhook, which can be used to filter webhooks by topic.
     shipment:
       type: object
       x-internal: true
@@ -340,144 +478,6 @@ components:
               type:
               - string
               - 'null'
-    metadata:
-      type: object
-      x-internal: true
-      title: metadata
-      properties:
-        generatedAt:
-          type: string
-          format: date-time
-          example: '2022-12-15T15:42:00.000Z'
-          description: Date at which the webhook data was generated.
-        messageId:
-          type: string
-          example: 356a7f93-3ce5-4b49-b560-156537283df9
-          description: Unique identifier of the tracking object across webhooks.
-        topic:
-          type: string
-          example: tracking/events
-          description: Topic of the webhook, which can be used to filter webhooks by topic.
-    tracker:
-      type: object
-      x-internal: true
-      title: Tracker
-      properties:
-        trackerId:
-          type: string
-          description: The id of the tracker that is providing this tracking.
-          example: 26148317-7502-d3ac-44a9-546d240ac0dd
-        trackingNumber:
-          type: string
-          description: The tracking number which the tracker is following.
-          example: '9400115901047177598206'
-        shipmentReference:
-          type:
-          - string
-          - 'null'
-          description: The `shipmentReference` you provided at the tracker's creation.
-          example: c6e4fef4-a816-b68f-4024-3b7e4c5a9f81
-        courierCode:
-          type:
-          - array
-          - string
-          description: Code of the courier(s) handling the shipment.
-          example:
-          - us-post
-          minItems: 0
-          maxItems: 3
-          items:
-            type: string
-        clientTrackerId:
-          type:
-          - string
-          - 'null'
-          description: The `clientTrackerId` you provided at the tracker's creation.
-          example: 3fa99515-3ca0-4901-85bb-056ee016799b
-        isSubscribed:
-          type: boolean
-          description: Indicates whether the tracker is active. A value of `false` means the tracker is archived and will not be used for tracking.
-          example: true
-        isTracked:
-          type: boolean
-          description: Indicates whether we are actively tracking the parcel. A value of `true` means new data is being searched for, while `false` indicates tracking has stopped due to delivery, inactivity, or unsubscription. Existing tracking results will remain accessible; however, new data will not be fetched, and notifications will no longer be sent.
-          example: true
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time at which the tracker was created.
-          example: '2021-03-10T05:13:00.000Z'
-      required:
-      - trackerId
-      - trackingNumber
-      - shipmentReference
-      - clientTrackerId
-      - isSubscribed
-      - isTracked
-      - createdAt
-    statistics:
-      type: object
-      x-internal: true
-      properties:
-        timestamps:
-          type: object
-          description: 'Date and time of the occurrence of each milestone of the shipment.
-
-
-            [Date and time Format](https://docs.ship24.com/data-format#logistics-date-and-time)
-
-
-            [List of Milestones](https://docs.ship24.com/status/#statusmilestone)'
-          properties:
-            infoReceivedDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `info_received` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T15:38:57'
-            inTransitDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `in_transit` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-02T19:24:57'
-            outForDeliveryDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `out_for_delivery` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T10:12:57'
-            failedAttemptDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `failed_attempt` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            availableForPickupDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `available_for_pickup` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T15:26:00'
-            exceptionDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `exception` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-04T11:33:00'
-            deliveredDatetime:
-              type:
-              - string
-              - 'null'
-              format: logistic-date-time
-              description: Occurrence [date and time](https://docs.ship24.com/data-format#logistics-date-and-time) of the first `delivered` [milestone](https://docs.ship24.com/status/#statusmilestone).
-              example: '2021-03-05T17:12:57'
   securitySchemes:
     Authorization:
       name: Bearer your_api_key
