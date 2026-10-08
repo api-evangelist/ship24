@@ -225,6 +225,10 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Plans
+  url: plans/ship24-plans-pricing.yml
+- type: FinOps
+  url: finops/ship24-finops.yml
 - type: CapabilityMap
   url: capabilities/ship24-capability-edges.yml
   name: Ship24 Business Capability Map
