@@ -1,0 +1,147 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/ship24/integrations
+- https://n8n.io/integrations/ship24/
+checked:
+- https://composio.dev/toolkits/ship24
+- https://monid.ai/tools/ship24
+- https://n8n.io/integrations/ship24/
+- https://zapier.com/apps/ship24/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: ship24
+  url: https://zapier.com/apps/ship24/integrations
+  external_url: https://help.ship24.com/en/article/ship24-order-tracking-for-zapier-123som1/
+  partner_tier: BRONZE
+  triggers: []
+  actions:
+  - key: create_tracker
+    label: Create a Tracker
+  - key: create_tracker_and_get_tracking_results
+    label: Create a Tracker and Get Tracking Results
+  - key: open_api_call
+    label: Make an API Call
+  - key: update_tracker
+    label: Update an Existing Tracker
+  searches:
+  - key: fetch_tracking_results_by_tracking_number
+    label: Find Tracking Results for a Tracking Number
+  - key: get_tracking_results_by_tracker_id
+    label: Find Tracking Results by Tracker ID
+  - key: per_call_tracker_search
+    label: Find Tracking Results by Tracking Number (Live Search)
+- marketplace: n8n
+  channel: open-source-node
+  app: ship24
+  url: https://n8n.io/integrations/ship24/
+  identity: title
+  pair_pages: 0
+  pairs: []
+edges:
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: DeftShip
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/deftship
+  direction: third-party
+  category: eCommerce
+  partner_url: https://deftship.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: ClickUp
+  partner: clickup
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/clickup
+  direction: third-party
+  category: Project Management
+  partner_url: https://clickup.com/zapier
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/ship24/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+templates:
+- title: Create trackers in Ship24 Order Tracking for new or updated rows in Google Sheets
+  url: https://zapier.com/apps/google-sheets/integrations/ship24-order-tracking/255689807/create-trackers-in-ship24-order-tracking-for-new-or-updated-rows-in-google-sheets
+  apps:
+  - google-sheets
+  - ship24-order-tracking
+- title: Create trackers in Ship24 Order Tracking and get tracking results for new records in Zapier Tables
+  url: https://zapier.com/apps/ship24-order-tracking/integrations/zapier-tables/255712471/create-trackers-in-ship24-order-tracking-and-get-tracking-results-for-new-records-in-zapier-tables
+  apps:
+  - zapier-tables
+  - ship24-order-tracking
+- title: Create Ship24 Order Tracking trackers when specific column values in monday.com boards are updated
+  url: https://zapier.com/apps/monday/integrations/ship24-order-tracking/255715123/create-ship24-order-tracking-trackers-when-specific-column-values-in-mondaycom-boards-are-updated
+  apps:
+  - monday
+  - ship24-order-tracking
+- title: Create api calls in Ship24 Order Tracking for new parcel shipments created in DeftShip
+  url: https://zapier.com/apps/deftship/integrations/ship24-order-tracking/255724408/create-api-calls-in-ship24-order-tracking-for-new-parcel-shipments-created-in-deftship
+  apps:
+  - deftship
+  - ship24-order-tracking
+- title: Create trackers in Ship24 Order Tracking for new emails matching search in Gmail
+  url: https://zapier.com/apps/gmail/integrations/ship24-order-tracking/255724483/create-trackers-in-ship24-order-tracking-for-new-emails-matching-search-in-gmail
+  apps:
+  - gmail
+  - ship24-order-tracking
+template_total: 5
