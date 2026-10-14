@@ -7,6 +7,7 @@ checked:
 - https://composio.dev/toolkits/ship24
 - https://monid.ai/tools/ship24
 - https://n8n.io/integrations/ship24/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/ship24/integrations
 summary: null
 marketplace_apps:
@@ -118,6 +119,37 @@ edges:
   direction: third-party
   category: eCommerce
   partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.ship24
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.ship24/tracking-mcp
+    register_id: com.ship24/tracking-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.ship24/tracking-mcp
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      streamable-http: 1
+    auth_declared: 1
+    catalog_declared: false
+    namespace_domains:
+    - ship24.com
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 templates:
 - title: Create trackers in Ship24 Order Tracking for new or updated rows in Google Sheets
   url: https://zapier.com/apps/google-sheets/integrations/ship24-order-tracking/255689807/create-trackers-in-ship24-order-tracking-for-new-or-updated-rows-in-google-sheets
