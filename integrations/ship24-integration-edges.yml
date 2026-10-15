@@ -9,6 +9,7 @@ checked:
 - https://n8n.io/integrations/ship24/
 - https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/ship24/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -119,6 +120,24 @@ edges:
   direction: third-party
   category: eCommerce
   partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/ship24
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Ship24 AI Order Tracking
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
 - partner_name: MCP Registry
   partner: mcp
   partner_match: register
@@ -134,7 +153,7 @@ edges:
     registered_name: com.ship24/tracking-mcp
     register_id: com.ship24/tracking-mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
   mcp_registry:
     servers:
     - com.ship24/tracking-mcp
