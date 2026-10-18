@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/ship24/integrations
 - https://n8n.io/integrations/ship24/
 checked:
+- google-workspace/integrations/google-workspace-integration-edges.yml
 - https://composio.dev/toolkits/ship24
 - https://monid.ai/tools/ship24
 - https://n8n.io/integrations/ship24/
@@ -223,6 +224,23 @@ edges:
     builder: provider (package published from the provider's own domain)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Google Workspace (own)
+  partner: google-workspace
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://workspace.google.com/marketplace/app/ship24_ai_order_tracking/939860061085
+  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
+  apps:
+  - Ship24 AI Order Tracking
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Google Workspace app
 templates:
 - title: Create trackers in Ship24 Order Tracking for new or updated rows in Google Sheets
   url: https://zapier.com/apps/google-sheets/integrations/ship24-order-tracking/255689807/create-trackers-in-ship24-order-tracking-for-new-or-updated-rows-in-google-sheets
