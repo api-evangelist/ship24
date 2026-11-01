@@ -1,4 +1,4 @@
-# Ship24 (ship24)
+# Ship24
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,97 +66,167 @@
 
 Ship24 is a universal shipment tracking platform that consolidates 1,500+ couriers and marketplaces into a single API, dashboard, and post-purchase customer experience. It is operated as an enterprise tracking aggregator with reported coverage of over a billion shipments tracked, a Shopify app, branded tracking pages, email and SMS delivery notifications, a tracking widget, and an IOSS fiscal intermediary service for EU VAT compliance on inbound parcels. The developer surface is a single REST tracking API delivering normalized status codes and webhook events designed to reduce WISMO ("where is my order?") support load for ecommerce, 3PL, and marketplace operators.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ship24/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ship24/refs/heads/main/apis.yml)
+**Areas:** Tracking · Logistics · Shipping · Couriers · Parcel · Webhook · E-Commerce · Post-Purchase
 
-## Scope
+## Ship24 on APIs.io
 
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Ship24 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ship24/](https://apis.io/providers/ship24/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Tracking
-- Logistics
-- Shipping
-- Couriers
-- Parcels
-- Webhooks
-- Ecommerce
-- PostPurchase
+- [Ship24 ➕ API for per-call plans API](https://apis.io/apis/ship24/ship24-api-for-per-call-plans-api/) — The **Tracking API (Per-call Plans)** is a specific product and associated endpoint on which usage is measured per API Call made. Each API call is…
+- [Ship24 🚚 Couriers API](https://apis.io/apis/ship24/ship24-couriers-api/) — The 🚚 Couriers API from Ship24 — 1 operation(s) for 🚚 couriers.
+- [Ship24 📦 Trackers API](https://apis.io/apis/ship24/ship24-trackers-api/) — The 📦 Trackers API from Ship24 — 7 operation(s) for 📦 trackers.
+- [Ship24 Tracking API](https://apis.io/apis/ship24/ship24-ship24-tracking-api-api/) — The Ship24 Tracking API API from Ship24 — 0 operation(s) for ship24 tracking api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Ship24 Tracking API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Ship24 Tracking API is a universal package tracking aggregator that abstracts 1,500+ couriers worldwide behind a single REST endpoint. Developers create a Tracker by submitting a tracking number (with optional courier hint) and receive a normalized timeline of shipment events — accepted, in transit, out for delivery, delivered, exception, pending, etc. — pushed via webhooks or pulled by tracker ID. The API exposes courier auto-detection, bulk tracker creation, a courier catalog endpoint, and webhook resend tooling for replay. It powers branded tracking pages, dashboards, and post-purchase customer experiences across ecommerce, 3PL, and marketplace workloads.
+- [Ship24 Agentic Access](https://apis.io/agentic-access/ship24/ship24-agentic-access/)
 
-- **Human URL:** [https://docs.ship24.com/](https://docs.ship24.com/)
-- **Base URL:** `https://api.ship24.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Tracking
-- Logistics
-- Shipping
-- Parcels
-- Couriers
-- Webhooks
-- Ecommerce
+- [Ship24 Tracker](https://apis.io/schemas/ship24/ship24-tracker/)
+- [Ship24 Tracking Result](https://apis.io/schemas/ship24/ship24-tracking-result/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.ship24.com/)
-- [API Reference](https://docs.ship24.com/tracking-api-reference/)
-- [Getting Started](https://docs.ship24.com/getting-started)
-- [OpenAPI](https://docs.ship24.com/assets/openapi/ship24-tracking-api.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/ship24-tracking-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ship24-tracking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ship24-tracking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Webhooks](https://docs.ship24.com/webhooks)
-- [Rate Limits](https://docs.ship24.com/rate-limiter)
-- [Integration](https://github.com/Ship24/n8n-nodes-ship24)
-- [Spectral Rules](rules/ship24-rules.yml)
-- [JSON Schema](json-schema/ship24-tracker-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/ship24-tracking-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/ship24-tracker-structure.json)
-- [JSON-LD](json-ld/ship24-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/ship24-vocabulary.yml)
-- [Example](examples/ship24-create-tracker-example.json)
-- [Example](examples/ship24-tracking-result-example.json)
-- [Plans](plans/ship24-plans-pricing.yml)
-- [Rate Limits Artifact](rate-limits/ship24-rate-limits.yml)
-- [Fin Ops](finops/ship24-finops.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Ship24 Tracker Structure](https://apis.io/json-structure/ship24/ship24-tracker-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Ship24 Context](https://apis.io/jsonld/ship24/ship24-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Ship24 Vocabulary](https://apis.io/vocabularies/ship24/ship24-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Ship24 Create Tracker Example](https://apis.io/examples/ship24/ship24-create-tracker-example/)
+- [Ship24 Tracking Result Example](https://apis.io/examples/ship24/ship24-tracking-result-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans ➕ API for per-call plans API](https://apis.io/collections/ship24/open-ship24-api-for-per-call-plans-api/)
+- [Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans 🚚 Couriers API](https://apis.io/collections/ship24/open-ship24-couriers-api/)
+- [Ship24 Tracking ➕ API for per-call plans ➕ API for per-call plans 📦 Trackers API](https://apis.io/collections/ship24/open-ship24-trackers-api/)
+- [Ship24 Tracking API](https://apis.io/collections/ship24/open-ship24-tracking-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Ship24 — jsonschema rules](https://apis.io/rules/ship24/ship24-jsonschema-spectral-rules/)
+- [Ship24 API Rules](https://apis.io/rules/ship24/ship24-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ship24 Authentication](https://apis.io/security/ship24/ship24-authentication/)
+- [Ship24 Domain Security](https://apis.io/security/ship24/ship24-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ship24 Plans Pricing](https://apis.io/plans/ship24/ship24-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ship24 Rate Limits](https://apis.io/rate-limits/ship24/ship24-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ship24 Finops](https://apis.io/finops/ship24/ship24-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.ship24.com)
 - [Documentation](https://docs.ship24.com/)
-- [API Reference](https://docs.ship24.com/tracking-api-reference/)
-- [Getting Started](https://docs.ship24.com/getting-started)
-- [Webhooks](https://docs.ship24.com/webhooks)
-- [Rate Limits](https://docs.ship24.com/rate-limiter)
+- [Getting started](https://docs.ship24.com/getting-started)
+- [API reference](https://docs.ship24.com/tracking-api-reference/)
 - [Pricing](https://www.ship24.com/pricing)
-- [Sign Up](https://dashboard.ship24.com/register)
-- [Login](https://dashboard.ship24.com/)
-- [Authentication](https://dashboard.ship24.com/integrations/api-keys)
-- [Status](https://status.ship24.com)
 - [Blog](https://www.ship24.com/blog)
-- [Contact Us](https://www.ship24.com/contact-us)
-- [Terms of Service](https://www.ship24.com/terms-and-conditions)
-- [Privacy Policy](https://www.ship24.com/privacy-policy)
-- [LinkedIn](https://www.linkedin.com/company/ship24/)
-- [GitHub Organization](https://github.com/Ship24)
-- [Shopify App](https://apps.shopify.com/ship24)
-- [Features](undefined)
-- [Integrations](https://www.ship24.com/integrations)
-- [Agent Skill](https://github.com/Ship24/n8n-nodes-ship24)
+- [Terms of service](https://www.ship24.com/terms-and-conditions)
+- [Privacy policy](https://www.ship24.com/privacy-policy)
+- [GitHub](https://github.com/Ship24)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 65.2 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 27.9 |
+| Access clarity | 35.5 |
+
+**Agent readiness 39.4** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | unknown |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ship24/](https://apis.io/providers/ship24/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ship24: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ship24/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
